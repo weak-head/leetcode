@@ -29,9 +29,19 @@ def findMedianSortedArrays(a: List[int], b: List[int]) -> float:
             else:
                 return a[a_ix_median] if a[a_ix_median] > b[b_ix_match] else b[b_ix_match]
         elif current_ix > target_ix:
-            a_rix, b_rix = a_ix_median - 1, b_ix_match - 1
+            a_rix, b_rix = a_ix_median, b_ix_match
+
+            if a_lix < a_rix and a[a_ix_median] > b[b_ix_match]:
+                a_rix = a_rix - 1
+            else:
+                b_rix = b_rix - 1
         else:
-            a_lix, b_lix = a_ix_median + 1, b_ix_match + 1
+            a_lix, b_lix = a_ix_median, b_ix_match
+
+            if a_lix < a_rix and a[a_ix_median] < b[b_ix_match]:
+                a_lix = a_lix + 1
+            else:
+                b_lix = b_lix + 1
 
 def extract_median(a: List[int], a_ix_median: int, b: List[int], b_ix_median: int) -> float:
     # a contains hi-part
@@ -79,8 +89,8 @@ if __name__ == '__main__':
     assert findMedianSortedArrays([1,2,3,4,5,6,7,8,9,10], []) == 5.5
 
     assert findMedianSortedArrays([1], [2]) == 1.5
-    # assert findMedianSortedArrays([1,2], [3,4]) == 2.5
-    # assert findMedianSortedArrays([1,2,3], [4,5,6]) == 3.5
+    assert findMedianSortedArrays([1,2], [3,4]) == 2.5
+    assert findMedianSortedArrays([1,2,3], [4,5,6]) == 3.5
 
     assert findMedianSortedArrays([1,3], [2]) == 2
     assert findMedianSortedArrays([1,3,5,8,9,10], [2,4,6,7,11]) == 6
