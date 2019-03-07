@@ -2,84 +2,47 @@ from typing import List
 
 def findMedianSortedArrays(a: List[int], b: List[int]) -> float:
     a_len, b_len = len(a), len(b)
-    # edge cases when one of the arrays is empty
-    if a_len == 0:
-        return extract_single_median(b, b_len)
-    if b_len == 0:
-        return extract_single_median(a, a_len)
-
-    a_lix, a_rix, b_lix, b_rix = 0, a_len - 1, 0, b_len - 1
-    target_ix = (a_rix + b_rix) >> 1
-
-    while a_lix <= a_rix or b_lix <= b_rix:
-        # median of the current segment a
-        a_ix_median = (a_lix + a_rix) >> 1
-
-        # this b index provides reliable information of how much elements
-        # we have from the left side in a anb b
-        b_ix_match = find_index(b, b_lix, b_rix, a[a_ix_median])
-        if b_ix_match > b_rix:
-            b_ix_match = b_rix
-
-        current_ix = a_ix_median + b_ix_match
-        # print("current_ix: {}, target_ix: {}  [a_ix_median: {}, a_lix: {}, a_rix: {}]  [b_ix_match: {}, b_lix: {}, b_rix: {}]"
-        #             .format(current_ix, target_ix, a_ix_median, a_lix, a_rix, b_ix_match, b_lix, b_rix))
-
-        if current_ix == target_ix:
-            if not (a_len + b_len) % 2:
-                return extract_median(a, a_ix_median, b, b_ix_match)
-            else:
-                return a[a_ix_median] if a[a_ix_median] > b[b_ix_match] else b[b_ix_match]
-        elif current_ix > target_ix:
-            a_rix, b_rix = a_ix_median, b_ix_match
-
-            if a_lix < a_rix and a[a_ix_median] > b[b_ix_match]:
-                a_rix = a_rix - 1
-            else:
-                b_rix = b_rix - 1
-        else:
-            a_lix, b_lix = a_ix_median, b_ix_match
-
-            if a_lix < a_rix and (a[a_ix_median] < b[b_ix_match] or b_lix >= b_rix):
-                a_lix = a_lix + 1
-            else:
-                b_lix = b_lix + 1
-
-def extract_median(a: List[int], a_ix_median: int, b: List[int], b_ix_median: int) -> float:
-    # a contains hi-part
-    if a[a_ix_median] > b[b_ix_median]:
-        low_part = None
-        if a_ix_median > 0:
-            low_part = max(a[a_ix_median - 1], b[b_ix_median])
-        else:
-            low_part = b[b_ix_median]
-        return (a[a_ix_median] + low_part) / 2
-    # b contains hi-part
+    kth_index = (a_len + b_len) >> 1
+    if (a_len + b_len) % 2:
+        return kth_elem(a, b, 0, a_len - 1, 0, b_len - 1, kth_index)
     else:
-        low_part = None
-        if b_ix_median > 0:
-            low_part = max(b[b_ix_median - 1], a[a_ix_median])
+        kth_1 = kth_elem(a, b, 0, a_len - 1, 0, b_len - 1, kth_index - 1)
+        kth_2 = kth_elem(a, b, 0, a_len - 1, 0, b_len - 1, kth_index)
+        return (kth_1 + kth_2) / 2
+
+def kth_elem(a: List[int], b: List[int],
+             a_l_ix: int, a_r_ix: int,
+             b_l_ix: int, b_r_ix: int,
+             kth_index: int) -> int:
+    if a_l_ix > a_r_ix:
+        return b[kth_index - a_l_ix]
+    if b_l_ix > b_r_ix:
+        return a[kth_index - b_l_ix]
+
+    a_m_ix = (a_l_ix + a_r_ix) >> 1
+    b_m_ix = (b_l_ix + b_r_ix) >> 1
+    a_m, b_m = a[a_m_ix], b[b_m_ix]
+
+    # we are still behind the median index, we need to move forward
+    if a_m_ix + b_m_ix < kth_index:
+        # a_m comes before b_m
+        # we need to move a_l_ix further right
+        if a_m < b_m:
+            return kth_elem(a, b, a_m_ix + 1, a_r_ix, b_l_ix, b_r_ix, kth_index)
+        # b_m comes before a_m
+        # we need to move it right
         else:
-            low_part = a[a_ix_median]
-        return (b[b_ix_median] + low_part) / 2
-
-def extract_single_median(a: List[int], a_len: int) -> float:
-    median = a_len >> 1
-    if a_len % 2 == 0:
-        return (a[median - 1] + a[median]) / 2
+            return kth_elem(a, b, a_l_ix, a_r_ix, b_m_ix + 1, b_r_ix, kth_index)
+    # we have passed the kth_index and we need to move backward
     else:
-        return a[median]
-
-def find_index(l: List[int], left: int, right: int, element: int) -> int:
-    if left >= right:
-        return left
-    median = (left + right) >> 1
-    if l[median] == element:
-        return median
-    elif l[median] < element:
-        return find_index(l, median + 1, right, element)
-    else:
-        return find_index(l, left, median - 1, element)
+        # a_m comes after b_m
+        # we need to move a_r_ix backward
+        if a_m > b_m:
+            return kth_elem(a, b, a_l_ix, a_m_ix - 1, b_l_ix, b_r_ix, kth_index)
+        # b_m comes after a_m
+        # we need
+        else:
+            return kth_elem(a, b, a_l_ix, a_r_ix, b_l_ix, b_m_ix - 1, kth_index)
 
 if __name__ == '__main__':
     assert findMedianSortedArrays([], [1]) == 1
