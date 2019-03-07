@@ -18,6 +18,8 @@ def findMedianSortedArrays(a: List[int], b: List[int]) -> float:
         # this b index provides reliable information of how much elements
         # we have from the left side in a anb b
         b_ix_match = find_index(b, b_lix, b_rix, a[a_ix_median])
+        if b_ix_match > b_rix:
+            b_ix_match = b_rix
 
         current_ix = a_ix_median + b_ix_match
         # print("current_ix: {}, target_ix: {}  [a_ix_median: {}, a_lix: {}, a_rix: {}]  [b_ix_match: {}, b_lix: {}, b_rix: {}]"
@@ -38,7 +40,7 @@ def findMedianSortedArrays(a: List[int], b: List[int]) -> float:
         else:
             a_lix, b_lix = a_ix_median, b_ix_match
 
-            if a_lix < a_rix and a[a_ix_median] < b[b_ix_match]:
+            if a_lix < a_rix and (a[a_ix_median] < b[b_ix_match] or b_lix >= b_rix):
                 a_lix = a_lix + 1
             else:
                 b_lix = b_lix + 1
@@ -68,7 +70,7 @@ def extract_single_median(a: List[int], a_len: int) -> float:
     else:
         return a[median]
 
-def find_index(l: List[int], left: int, right: int,  element: int) -> int:
+def find_index(l: List[int], left: int, right: int, element: int) -> int:
     if left >= right:
         return left
     median = (left + right) >> 1
@@ -101,5 +103,8 @@ if __name__ == '__main__':
 
     assert findMedianSortedArrays([2,3,4,5,6,7,8,9,10], [1]) == 5.5
     assert findMedianSortedArrays([2,3,4,5,6,7,8,9,10,11], [1]) == 6
+
+    assert findMedianSortedArrays([3,4,5,6,7], [1,2]) == 4
+    assert findMedianSortedArrays([6,7,8], [9,10,11]) == 8.5
 
     print('done')
