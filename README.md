@@ -15,3 +15,4 @@
 | 12  | [Integer to Roman](https://leetcode.com/problems/integer-to-roman/) | [py](src/0012_intger_to_roman/integer_to_roman.py) |
 | 13  | [Roman to Integer](https://leetcode.com/problems/roman-to-integer/) | [py](src/0013_roman_to_integer/roman_to_integer.py) |
 | 146 | [LRU Cache](https://leetcode.com/problems/lru-cache/) | [py](src/0146_lru_cache/lru_cache.py) |
+| 1005 | [Maximize Sum Of Array After K Negations](https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/) | [py](src/1005_maximize_sum/maximize_sum.py) |
