@@ -1,7 +1,7 @@
 from typing import List
 
 # Strainforward scanning
-def longestCommonPrefix(strs: List[str]) -> str:
+def longestCommonPrefix2(strs: List[str]) -> str:
     if len(strs) == 0:
         return ''
     common_prefix = list(strs[0])
@@ -16,11 +16,25 @@ def longestCommonPrefix(strs: List[str]) -> str:
             return ""
     return "".join(common_prefix)
 
+# Checking n-th letter of a k-th string
+def longestCommonPrefix(strs: List[str]) -> str:
+    if len(strs) == 0:
+        return ''
+    for ix, current_char in enumerate(strs[0]):
+        for s in strs:
+            if len(s) <= ix:
+                return s
+            if s[ix] != current_char:
+                return strs[0][0:ix]
+    return strs[0]
+
 if __name__ == '__main__':
     assert longestCommonPrefix([]) == ''
     assert longestCommonPrefix(['abc', 'abcd', 'abcdef', 'abb']) == 'ab'
     assert longestCommonPrefix(['abc', 'fde', 'fek']) == ''
     assert longestCommonPrefix(["flower","flow","flight"]) == 'fl'
     assert longestCommonPrefix(['aca', 'bca']) == ''
+    assert longestCommonPrefix(['aa', 'a']) == 'a'
+
 
     print('passed')
