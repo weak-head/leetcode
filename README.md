@@ -15,6 +15,7 @@
 | 12  | [Integer to Roman](https://leetcode.com/problems/integer-to-roman/) | [py](src/0012_integer_to_roman/integer_to_roman.py) |
 | 13  | [Roman to Integer](https://leetcode.com/problems/roman-to-integer/) | [py](src/0013_roman_to_integer/roman_to_integer.py) |
 | 14  | [Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/) | [py](src/0014_longest_common_prefix/longest_common_prefix.py) |
+| 15  | [3 Sum](https://leetcode.com/problems/3sum/submissions/) | [py](src/0015_3sum/3sum.py) |
 | 146 | [LRU Cache](https://leetcode.com/problems/lru-cache/) | [py](src/0146_lru_cache/lru_cache.py) |
 | 1005 | [Maximize Sum Of Array After K Negations](https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/) | [py](src/1005_maximize_sum/maximize_sum.py) |
 | 1006 | [Clumsy Factorial](https://leetcode.com/problems/clumsy-factorial/) | [py](src/1006_clumsy_factorial/clumsy_factorial.py) |
