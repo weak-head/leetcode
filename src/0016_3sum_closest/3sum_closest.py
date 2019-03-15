@@ -4,23 +4,22 @@ import sys
 # O(n^2)
 def threeSumClosest(nums: List[int], target: int) -> int:
     nums.sort()
-    closest_sum, nums_len = sys.maxsize, len(nums)
-    for l_base in range(0, nums_len):
+    closest_sum, diff, nums_len = sys.maxsize, sys.maxsize, len(nums)
+    for l_base in range(0, nums_len - 2):
         l_ix, r_ix = l_base + 1, nums_len - 1
         while l_ix < r_ix:
-            value = nums[l_base] + nums[l_ix] + nums[r_ix]
-            if abs((target - value)) < abs((target - closest_sum)):
-                closest_sum = value
-            l_value = nums[l_base] + nums[l_ix + 1] + nums[r_ix]
-            r_value = nums[l_base] + nums[l_ix] + nums[r_ix - 1]
-            if abs(target - l_value) < abs(target - r_value):
+            current_sum = nums[l_base] + nums[l_ix] + nums[r_ix]
+            if current_sum == target:
+                return current_sum
+
+            if abs(target - current_sum) < diff:
+                diff = abs(target - current_sum)
+                closest_sum = current_sum
+
+            if current_sum < target:
                 l_ix = l_ix + 1
-                while l_ix < r_ix and nums[l_ix - 1] == nums[l_ix]:
-                    l_ix = l_ix + 1
             else:
                 r_ix = r_ix - 1
-                while r_ix > l_ix and nums[r_ix + 1] == nums[r_ix]:
-                    r_ix = r_ix - 1
     return closest_sum
 
 if __name__ == '__main__':
