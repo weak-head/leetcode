@@ -85,10 +85,10 @@ def permutations(n):
 def generateParenthesis2(n: int) -> List[str]:
     result = []
     gen_par_back('', n, 0, 0, result)
-    return list(set(result))
+    return result
 
 
-def gen_par_back(s: str, n: int, op: int, cp: int, result: List[str]):
+def gen_par_back(s: str, n: int, op: int, cp: int, result: List[str]) -> None:
     # we have exhausted all possible combinations
     if cp == n:
         return
@@ -112,9 +112,11 @@ def gen_par_back(s: str, n: int, op: int, cp: int, result: List[str]):
 
 
 if __name__ == '__main__':
-    for num in range(8):
+    for num in range(9):
         a = generateParenthesis(num)
         b = generateParenthesis2(num)
+        if len(a) != len(b):
+            print(num + ' fail (len): ', len(a), len(b))
         for ar in a:
             if ar not in b:
                 print(num + ' fail: ', ar)
