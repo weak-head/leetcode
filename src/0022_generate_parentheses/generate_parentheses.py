@@ -1,5 +1,9 @@
 from typing import List
 
+# ----------------------------------------------------
+# -- Using Dynamic Programming and number allocation permutations
+# -- hard to follow
+
 
 def generateParenthesis(n: int) -> List[str]:
     return list(gen_par(n))
@@ -74,5 +78,44 @@ def permutations(n):
     permutation_map[n] = result
     return result
 
+# --------------------------------------------------
+# -- Using backtracking
+
+
+def generateParenthesis2(n: int) -> List[str]:
+    result = []
+    gen_par_back('', n, 0, 0, result)
+    return list(set(result))
+
+
+def gen_par_back(s: str, n: int, op: int, cp: int, result: List[str]):
+    # we have exhausted all possible combinations
+    if cp == n:
+        return
+
+    # we have exhausted all possible combinations for opened pars
+    if op == n:
+        result.append(s + (')' * (n - cp)))
+        return
+
+    # op < n
+    gen_par_back(s + '(', n, op+1, cp, result)
+
+    if op > cp:
+        gen_par_back(s + ')', n, op, cp+1, result)
+
+# ----------------------------------------------------
+# -- Using Dynamic Programming (easy to follow)
+
+# ---
+# ---
+
+
 if __name__ == '__main__':
-    print(generateParenthesis(8))
+    for num in range(8):
+        a = generateParenthesis(num)
+        b = generateParenthesis2(num)
+        for ar in a:
+            if ar not in b:
+                print(num + ' fail: ', ar)
+    print('ok')
