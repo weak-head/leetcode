@@ -1,3 +1,4 @@
+from queue import PriorityQueue
 from typing import List
 
 
@@ -8,6 +9,7 @@ class ListNode:
 
 
 def mergeKLists(lists: List[ListNode]) -> ListNode:
+    '''Divide And Conquer'''
     if lists == []:
         return None
 
@@ -39,6 +41,38 @@ def merge_two(l1: ListNode, l2: ListNode) -> ListNode:
     node.next = l1 if l1 is not None else l2
     return head.next
 
+# -----------------------------------------------
+# -- Much slower solution using priority queue --
+
+
+class PriorityEntry(object):
+    def __init__(self, priority, data):
+        self.data = data
+        self.priority = priority
+
+    def __lt__(self, other):
+        return self.priority < other.priority
+
+
+def mergeKLists_pq(lists):
+    '''Priority Queue'''
+    head = current = ListNode(None)
+    q = PriorityQueue()
+
+    for node in lists:
+        if node:
+            q.put(PriorityEntry(node.val, node))
+
+    while not q.empty():
+        current.next = q.get().data
+        current = current.next
+
+        if current.next:
+            q.put(PriorityEntry(current.next.val, current.next))
+
+    return head.next
+
+# ------------
 
 def to_list_node(l: List[int]) -> ListNode:
     head = node = ListNode(None)
