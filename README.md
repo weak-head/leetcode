@@ -23,6 +23,7 @@
 | 20  | [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) | [py](src/0020_valid_parentheses/valid_parentheses.py) |
 | 21  | [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) | [py](src/0021_merge_two_sorted_lists/merge_two_sorted_lists.py) |
 | 22  | [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/) | [py](src/0022_generate_parentheses/generate_parentheses.py) |
+| 23  | [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists) | [py](src/0023_merge_k_lists/merge_k_lists.py) |
 | 146 | [LRU Cache](https://leetcode.com/problems/lru-cache/) | [py](src/0146_lru_cache/lru_cache.py) |
 | 1005 | [Maximize Sum Of Array After K Negations](https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/) | [py](src/1005_maximize_sum/maximize_sum.py) |
 | 1006 | [Clumsy Factorial](https://leetcode.com/problems/clumsy-factorial/) | [py](src/1006_clumsy_factorial/clumsy_factorial.py) |
