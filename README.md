@@ -26,6 +26,7 @@
 | 23  | [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists) | [py](src/0023_merge_k_lists/merge_k_lists.py) |
 | 24  | [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array) | [py](src/0024_remove_duplicates/remove_duplicates.py) |
 | 25  | [Remove Element](https://leetcode.com/problems/remove-element) | [py](src/0025_remove_element/remove_element.py) |
+| 26  | [Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/) | [py](src/0026_swap_nodes_in_pairs/swap_nodes_in_pairs.py) |
 | 146 | [LRU Cache](https://leetcode.com/problems/lru-cache/) | [py](src/0146_lru_cache/lru_cache.py) |
 | 1005 | [Maximize Sum Of Array After K Negations](https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/) | [py](src/1005_maximize_sum/maximize_sum.py) |
 | 1006 | [Clumsy Factorial](https://leetcode.com/problems/clumsy-factorial/) | [py](src/1006_clumsy_factorial/clumsy_factorial.py) |
