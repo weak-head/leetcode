@@ -11,6 +11,7 @@
 | 7   | [Reverse Integer](https://leetcode.com/problems/reverse-integer/) | [py](src/0007_reverse_integer/reverse_integer.py) |
 | 8   | [String to Integer](https://leetcode.com/problems/string-to-integer-atoi/) | [py](src/0008_string_to_integer/string_to_integer.py) |
 | 9   | [Palindrome Number](https://leetcode.com/problems/palindrome-number/) | [py](src/0009_palindrome_number/palindrome_number.py) |
+| 10  | [Regular Expression Match](https://leetcode.com/problems/regular-expression-matching) | [py](src/0010_reg_exp_match/reg_exp_match.py) |
 | 11  | [Container With Most Water](https://leetcode.com/problems/container-with-most-water/) | [py](src/0011_container_with_most_water/container_with_most_water.py) |
 | 12  | [Integer to Roman](https://leetcode.com/problems/integer-to-roman/) | [py](src/0012_integer_to_roman/integer_to_roman.py) |
 | 13  | [Roman to Integer](https://leetcode.com/problems/roman-to-integer/) | [py](src/0013_roman_to_integer/roman_to_integer.py) |
