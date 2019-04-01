@@ -29,6 +29,7 @@
 | 25  | [Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) | [py](src/0025_reverse_nodes_in_k_group/reverse_nodes_in_k_group.py) |
 | 26  | [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array) | [py](src/0026_remove_duplicates/remove_duplicates.py) |
 | 27  | [Remove Element](https://leetcode.com/problems/remove-element) | [py](src/0027_remove_element/remove_element.py) |
+| 28  | [Implement strStr](https://leetcode.com/problems/implement-strstr/) | [py](src/0028_implement_strstr/implement_strstr.py) |
 | 146 | [LRU Cache](https://leetcode.com/problems/lru-cache/) | [py](src/0146_lru_cache/lru_cache.py) |
 | 1005 | [Maximize Sum Of Array After K Negations](https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/) | [py](src/1005_maximize_sum/maximize_sum.py) |
 | 1006 | [Clumsy Factorial](https://leetcode.com/problems/clumsy-factorial/) | [py](src/1006_clumsy_factorial/clumsy_factorial.py) |
