@@ -6,7 +6,7 @@ def longestValidParentheses(s: str) -> int:
     for ix, c in enumerate(s):
         if c == '(':
             st.append(ix)
-        # c == '('
+        # c == ')'
         else:
             if len(st) > 0:
                 last_op = st.pop()
