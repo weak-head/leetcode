@@ -31,6 +31,7 @@
 | 27  | [Remove Element](https://leetcode.com/problems/remove-element) | [py](src/0027_remove_element/remove_element.py) |
 | 28  | [Implement strStr](https://leetcode.com/problems/implement-strstr/) | [py](src/0028_implement_strstr/implement_strstr.py) |
 | 29  | [Divide Two Integers](https://leetcode.com/problems/divide-two-integers/) | [py](src/0029_divide_two_integers/divide_two_integers.py) |
+| 32  | [Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/) | [py](src/0032_longest_valid_parentheses/longest_valid_parentheses.py) |
 | 33  | [Search In Sorted Rotated Array](https://leetcode.com/problems/search-in-rotated-sorted-array/) | [py](src/0033_search_in_rotated_array/search_in_rotated_array.py) |
 | 146 | [LRU Cache](https://leetcode.com/problems/lru-cache/) | [py](src/0146_lru_cache/lru_cache.py) |
 | 1005 | [Maximize Sum Of Array After K Negations](https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/) | [py](src/1005_maximize_sum/maximize_sum.py) |
