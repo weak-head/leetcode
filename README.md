@@ -1,5 +1,40 @@
 # leetcode
 
+## How to run and test
+
+Setup and activate virtual environment:
+
+```bash
+python3 -m venv venv
+. venv/bin/activate
+```
+
+Install test dependencies and the leetcode module:
+
+```bash
+pip install pytest coverage
+pip install --editable .
+```
+
+Run all tests and generate code coverage:
+
+```
+pytest
+coverage run -m pytest
+```
+
+Output the coverage report:
+
+```bash
+# to console
+coverage report
+
+# as html
+coverage html
+```
+
+## Problems
+
 |  #  | Title | Solution |
 | --- | ----- | -------- |
 | 1   | [Two Sum](https://leetcode.com/problems/two-sum/) | [py](src/0001_two_sum/two_sum.py) |
@@ -40,34 +75,3 @@
 | 1007 | [Minimum Domino Rotations For Equal Row](https://leetcode.com/problems/minimum-domino-rotations-for-equal-row/) | [py](src/1007_min_domino_rotation/min_domino_rotation.py) |
 | 1008 | [Construct Binary Search Tree from Preorder Traversal](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/) | [py](src/1008_bst_from_preorder/bst_from_preorder.py) |
 
-### Run and Test
-
-Setup and init virtual environment:
-
-```bash
-python3 -m venv venv
-. venv/bin/activate
-```
-
-Install test dependencies and leetcode module:
-
-```bash
-pip install pytest coverage
-pip install --editable .
-```
-
-Run all tests and generate code coverage:
-
-```
-pytest
-coverage run -m pytest
-```
-
-Output the coverage report:
-```bash
-# to console
-coverage report
-
-# as html
-coverage html
-```
