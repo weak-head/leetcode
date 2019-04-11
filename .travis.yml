@@ -9,17 +9,13 @@ apt:
 
 python: 3.6
 
-cache:
-  directories:
-    - $HOME/leetcode/.pip-cache/
-
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get -y install python3-pip
   - sudo apt-get install python-virtualenv
 
 install:
-  - pip3 install pytest codecov
+  - pip3 install codecov
 
 script:
   - coverage run -m pytest
