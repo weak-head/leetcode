@@ -1,39 +1,27 @@
 # leetcode
 
-## How to run and test
-
-Setup and activate virtual environment:
+## Building and testing
 
 ```bash
+# Setup and activate virtual environment
 python3 -m venv venv
 . venv/bin/activate
-```
 
-Install test dependencies and the leetcode module:
-
-```bash
+# Install test dependencies and the module
 pip install pytest coverage
 pip install --editable .
-```
 
-Run all tests and generate code coverage:
-
-```
+# Run all test cases and generate code coverage
 pytest
 coverage run -m pytest
-```
 
-Output the coverage report:
-
-```bash
-# to console
+# Output the coverage report
 coverage report
-
-# as html
 coverage html
 ```
 
-## Problems
+
+## List of Problems
 
 |  #  | Title | Solution |
 | --- | ----- | -------- |
