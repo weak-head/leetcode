@@ -1,5 +1,8 @@
 # leetcode
 
+[![Build Status](https://travis-ci.org/weak-head/leetcode.svg?branch=master)](https://travis-ci.org/weak-head/leetcode)
+[![codecov](https://codecov.io/gh/weak-head/leetcode/branch/master/graph/badge.svg)](https://codecov.io/gh/weak-head/leetcode)
+
 ## Building and testing
 
 ```bash
@@ -19,7 +22,6 @@ coverage run -m pytest
 coverage report
 coverage html
 ```
-
 
 ## List of Problems
 
