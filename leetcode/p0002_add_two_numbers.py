@@ -39,28 +39,3 @@ def to_array(node: ListNode) -> List[int]:
         res.append(node.val)
         node = node.next
     return res
-
-if __name__ == '__main__':
-    s = Solution()
-
-    l1 = from_array([2, 4, 3])
-    l2 = from_array([5, 6, 4])
-    assert to_array(s.addTwoNumbers(l1, l2)) == [7, 0, 8]
-
-    assert s.addTwoNumbers(None, None) == None
-
-    l1 = from_array([2, 4, 3, 1, 2, 7])
-    l2 = from_array([5, 6, 4, 0, 0, 4])
-    assert to_array(s.addTwoNumbers(l1, l2)) == [7, 0, 8, 1, 2, 1, 1]
-
-    l1 = from_array([2, 4, 3])
-    l2 = from_array([5, 6, 4, 0, 0, 4])
-    assert to_array(s.addTwoNumbers(l1, l2)) == [7, 0, 8, 0, 0, 4]
-
-    l2 = from_array([5, 6, 4, 0, 0, 4])
-    assert to_array(s.addTwoNumbers(None, l2)) == [5, 6, 4, 0, 0, 4]
-
-    l1 = from_array([5, 6, 4, 0, 0, 4])
-    assert to_array(s.addTwoNumbers(l1, None)) == [5, 6, 4, 0, 0, 4]
-
-    print('passed')
