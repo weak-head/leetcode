@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 '''Generates markdown table with list of problems'''
 
 import six
@@ -8,19 +7,27 @@ import requests
 from pytablewriter import MarkdownTableWriter
 
 
+VERIFY_URLS = False
+
 TABLE_TITLE = 'List of Problems'
 SRC_FOLDER = './leetcode'
 TESTS_FOLDER = 'tests'
+
 LEETCODE_URL = 'https://leetcode.com/problems/{}/'
 GITHUB_SRC = 'leetcode/{}'
 GITHUB_TST = 'tests/test_{}'
 LINK_TEMPLATE = '[{title}]({link})'
+GITHUB_URL_TEMPLATE = 'https://github.com/weak-head/leetcode/blob/master/{}'
 
 
 def verify_url(url):
-    r = requests.get(url)
-    print(r.status_code)
-    return r.status_code == 200
+    if VERIFY_URLS:
+        r = requests.get(url, timeout=1)
+        if r.status_code != 200:
+            print('Broken link [{status}]: {link}'.format(
+                status=r.status_code,
+                link=url
+            ))
 
 
 def parse_filename(file_name):
@@ -39,30 +46,29 @@ def gen_table():
         if file[0] == 'p':
             id, name = parse_filename(file)
 
-            # verify leetcode url
-            leetcode_url = LEETCODE_URL.format(name.replace('_', '-'))
-            if not verify_url(leetcode_url):
-                print('Failed for {}'.format(leetcode_url))
-
             # compose leetcode link
+            leetcode_url = LEETCODE_URL.format(name.replace('_', '-'))
             leetcode_link = LINK_TEMPLATE.format(
                 title=name.replace('_', ' ').title(),
                 link=leetcode_url
             )
+            verify_url(leetcode_url)
 
             # compose github src link
-            src_url = GITHUB_SRC.format(name)
+            src_url = GITHUB_SRC.format(file)
             src_link = LINK_TEMPLATE.format(
                 title='src',
                 link=src_url
             )
+            verify_url(GITHUB_URL_TEMPLATE.format(src_url))
 
             # compose github tst link
-            tst_url = GITHUB_TST.format(name)
+            tst_url = GITHUB_TST.format(file)
             tst_link = LINK_TEMPLATE.format(
                 title='tst',
                 link=tst_url
             )
+            verify_url(GITHUB_URL_TEMPLATE.format(tst_url))
 
             table.append([id, leetcode_link, src_link, tst_link])
 
