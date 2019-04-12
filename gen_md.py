@@ -70,12 +70,13 @@ def gen_table():
         # if problem
         if file[0] == 'p':
             id, name = parse_filename(file)
-            next_problem(id, name)
+            problem_title = name.replace('_', ' ').title()
+            next_problem(id, problem_title)
 
             # compose leetcode link
             leetcode_url = LEETCODE_URL.format(name.replace('_', '-'))
             leetcode_link = LINK_TEMPLATE.format(
-                title=name.replace('_', ' ').title(),
+                title=problem_title,
                 link=leetcode_url
             )
             errors = verify_url(leetcode_url)
