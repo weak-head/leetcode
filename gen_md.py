@@ -4,10 +4,11 @@
 import six
 import os
 import requests
+from argparse import ArgumentParser
 from pytablewriter import MarkdownTableWriter
 
 
-VERIFY_URLS = False
+VERIFY_LINKS = False
 
 TABLE_TITLE = 'List of Problems'
 SRC_FOLDER = './leetcode'
@@ -21,12 +22,20 @@ GITHUB_URL_TEMPLATE = 'https://github.com/weak-head/leetcode/blob/master/{}'
 
 
 def verify_url(url):
-    if VERIFY_URLS:
+    if VERIFY_LINKS:
         r = requests.get(url, timeout=1)
         if r.status_code != 200:
             print('Broken link [{status}]: {link}'.format(
                 status=r.status_code,
                 link=url
+            ))
+
+
+def verify_file(file_path):
+    if VERIFY_LINKS:
+        if not os.path.isfile(file_path):
+            print('Missing file: {path}'.format(
+                path=file_path
             ))
 
 
@@ -61,6 +70,7 @@ def gen_table():
                 link=src_url
             )
             verify_url(GITHUB_URL_TEMPLATE.format(src_url))
+            verify_file(src_url)
 
             # compose github tst link
             tst_url = GITHUB_TST.format(file)
@@ -69,6 +79,7 @@ def gen_table():
                 link=tst_url
             )
             verify_url(GITHUB_URL_TEMPLATE.format(tst_url))
+            verify_file(tst_url)
 
             table.append([id, leetcode_link, src_link, tst_link])
 
@@ -108,4 +119,10 @@ def refresh_markdown(file_name):
 
 
 if __name__ == '__main__':
+    parser = ArgumentParser()
+    parser.add_argument('--verify', action='store_true', help='verify links')
+    args = parser.parse_args()
+
+    VERIFY_LINKS = args.verify
+
     refresh_markdown('README.md')
