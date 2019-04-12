@@ -9,11 +9,3 @@ def reverse(x: int) -> int:
     if (x_rev < (-2**31) or x_rev > (2**31)-1):
             return 0
     return x_rev
-
-if __name__ == '__main__':
-    assert reverse(123) == 321
-    assert reverse(0) == 0
-    assert reverse(9) == 9
-    assert reverse(-123) == -321
-
-    print('done')

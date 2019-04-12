@@ -24,17 +24,3 @@ def atoi(s: str) -> int:
 
     # 32-bit integer
     return max(-2**31, min(sign * result, 2**31-1))
-
-if __name__ == '__main__':
-    assert atoi('') == 0
-    assert atoi('   37') == 37
-    assert atoi('   +37') == 37
-    assert atoi('   -37') == -37
-    assert atoi('   \t42') == 0
-    assert atoi('db 44 2') == 0
-    assert atoi('  -db') == 0
-    assert atoi('-32db') == -32
-    assert atoi(' -32 db') == -32
-    assert atoi('-91283472332') == -2147483648
-
-    print('done')
