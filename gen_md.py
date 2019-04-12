@@ -25,18 +25,34 @@ def verify_url(url):
     if VERIFY_LINKS:
         r = requests.get(url, timeout=1)
         if r.status_code != 200:
-            print('Broken link [{status}]: {link}'.format(
+            print('  Broken link [{status}]: {link}'.format(
                 status=r.status_code,
                 link=url
             ))
+            return False
+    return True
 
 
 def verify_file(file_path):
     if VERIFY_LINKS:
         if not os.path.isfile(file_path):
-            print('Missing file: {path}'.format(
+            print('  Missing file: {path}'.format(
                 path=file_path
             ))
+            return False
+    return True
+
+
+def next_problem(id, title):
+    print('\n{id} - {title}:'.format(
+        id=id,
+        title=title
+    ))
+
+
+def verification_status(id, title, success):
+    if success:
+        print('  OK')
 
 
 def parse_filename(file_name):
@@ -54,6 +70,7 @@ def gen_table():
         # if problem
         if file[0] == 'p':
             id, name = parse_filename(file)
+            next_problem(id, name)
 
             # compose leetcode link
             leetcode_url = LEETCODE_URL.format(name.replace('_', '-'))
@@ -61,7 +78,7 @@ def gen_table():
                 title=name.replace('_', ' ').title(),
                 link=leetcode_url
             )
-            verify_url(leetcode_url)
+            errors = verify_url(leetcode_url)
 
             # compose github src link
             src_url = GITHUB_SRC.format(file)
@@ -69,8 +86,8 @@ def gen_table():
                 title='src',
                 link=src_url
             )
-            verify_url(GITHUB_URL_TEMPLATE.format(src_url))
-            verify_file(src_url)
+            errors = verify_url(GITHUB_URL_TEMPLATE.format(src_url)) and errors
+            errors = verify_file(src_url) and errors
 
             # compose github tst link
             tst_url = GITHUB_TST.format(file)
@@ -78,9 +95,10 @@ def gen_table():
                 title='tst',
                 link=tst_url
             )
-            verify_url(GITHUB_URL_TEMPLATE.format(tst_url))
-            verify_file(tst_url)
+            errors = verify_url(GITHUB_URL_TEMPLATE.format(tst_url)) and errors
+            errors = verify_file(tst_url) and errors
 
+            verification_status(id, name, errors)
             table.append([id, leetcode_link, src_link, tst_link])
 
     return header, table
@@ -126,3 +144,5 @@ if __name__ == '__main__':
     VERIFY_LINKS = args.verify
 
     refresh_markdown('README.md')
+
+    print('\ndone\n')
