@@ -24,13 +24,3 @@ def convert(s: str, numRows: int) -> str:
                     break
                 converted_str.append(s[next_element_ix])
     return ''.join(converted_str)
-
-if __name__ == '__main__':
-    assert convert('', 10) == ''
-    assert convert('PAYPALISHIRING', 3) == 'PAHNAPLSIIGYIR'
-    assert convert('PAYPALISHIRING', 4) == 'PINALSIGYAHRPI'
-    assert convert('PAYPALISHIRING', 99) == 'PAYPALISHIRING'
-    assert convert('PAYPALISHIRING', 1) == 'PAYPALISHIRING'
-    assert convert('PAYPALISHIRING', 2) == 'PYAIHRNAPLSIIG'
-
-    print('passed')

@@ -43,31 +43,3 @@ def kth_elem(a: List[int], b: List[int],
         # we need
         else:
             return kth_elem(a, b, a_l_ix, a_r_ix, b_l_ix, b_m_ix - 1, kth_index)
-
-if __name__ == '__main__':
-    assert findMedianSortedArrays([], [1]) == 1
-    assert findMedianSortedArrays([], [2,3,4,5,6,7,8,9,10]) == 6
-    assert findMedianSortedArrays([], [1,2,3,4,5,6,7,8,9,10]) == 5.5
-
-    assert findMedianSortedArrays([1], []) == 1
-    assert findMedianSortedArrays([2,3,4,5,6,7,8,9,10], []) == 6
-    assert findMedianSortedArrays([1,2,3,4,5,6,7,8,9,10], []) == 5.5
-
-    assert findMedianSortedArrays([1], [2]) == 1.5
-    assert findMedianSortedArrays([1,2], [3,4]) == 2.5
-    assert findMedianSortedArrays([1,2,3], [4,5,6]) == 3.5
-
-    assert findMedianSortedArrays([1,3], [2]) == 2
-    assert findMedianSortedArrays([1,3,5,8,9,10], [2,4,6,7,11]) == 6
-    assert findMedianSortedArrays([1,3,5], [2,4,6]) == 3.5
-
-    assert findMedianSortedArrays([1], [2,3,4,5,6,7,8,9,10,11]) == 6
-    assert findMedianSortedArrays([1], [2,3,4,5,6,7,8,9,10]) == 5.5
-
-    assert findMedianSortedArrays([2,3,4,5,6,7,8,9,10], [1]) == 5.5
-    assert findMedianSortedArrays([2,3,4,5,6,7,8,9,10,11], [1]) == 6
-
-    assert findMedianSortedArrays([3,4,5,6,7], [1,2]) == 4
-    assert findMedianSortedArrays([6,7,8], [9,10,11]) == 8.5
-
-    print('done')
