@@ -21,13 +21,3 @@ def romanToInt(s: str) -> int:
         else:
             current_value = current_value - next_value
     return num + current_value
-
-if __name__ == '__main__':
-    assert romanToInt('I') == 1
-    assert romanToInt('IV') == 4
-    assert romanToInt('VII') == 7
-    assert romanToInt('IIX') == 8
-    assert romanToInt('XVII') == 17
-    assert romanToInt('IVIV') == 8
-
-    print('done')

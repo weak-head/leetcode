@@ -27,14 +27,3 @@ def longestCommonPrefix(strs: List[str]) -> str:
             if s[ix] != current_char:
                 return strs[0][0:ix]
     return strs[0]
-
-if __name__ == '__main__':
-    assert longestCommonPrefix([]) == ''
-    assert longestCommonPrefix(['abc', 'abcd', 'abcdef', 'abb']) == 'ab'
-    assert longestCommonPrefix(['abc', 'fde', 'fek']) == ''
-    assert longestCommonPrefix(["flower","flow","flight"]) == 'fl'
-    assert longestCommonPrefix(['aca', 'bca']) == ''
-    assert longestCommonPrefix(['aa', 'a']) == 'a'
-
-
-    print('passed')

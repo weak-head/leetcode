@@ -55,15 +55,3 @@ def maxArea(heights: List[int]) -> int:
         else:
             r_ix = r_ix - 1
     return max_volume
-
-if __name__ == '__main__':
-    assert maxArea([1,4]) == 1
-    assert maxArea([4,1]) == 1
-    assert maxArea([1,1,1,1,1,1,1,1]) == 7
-    assert maxArea([1,1,1,1,100,1,1,1]) == 7
-    assert maxArea([1,5,1,1,1,1,1,1]) == 7
-    assert maxArea([1,5,1,1,1,1,1,8]) == 30
-    assert maxArea([1,8,6,2,5,4,8,3,7]) == 49
-    assert maxArea([6,14,2,11,2,7,0,9,12,7]) == 84
-
-    print('passed')

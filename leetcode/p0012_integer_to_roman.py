@@ -22,11 +22,3 @@ def intToRoman(num: int) -> str:
             num = num - value
     return ''.join(result)
 
-if __name__ == '__main__':
-    assert intToRoman(4) == 'IV'
-    assert intToRoman(123) == 'CXXIII'
-    assert intToRoman(1994) == 'MCMXCIV'
-    assert intToRoman(999) == 'CMXCIX'
-    assert intToRoman(2019) == 'MMXIX'
-
-    print('passed')
