@@ -42,9 +42,3 @@ def letterCombinations(digits: str) -> List[str]:
 
     backtrack('', digits)
     return result
-
-
-if __name__ == '__main__':
-    assert letterCombinations(
-        '23') == ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
-    print('passed')
