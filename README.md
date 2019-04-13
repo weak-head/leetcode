@@ -21,6 +21,10 @@ coverage run -m pytest
 # Output the coverage report
 coverage report
 coverage html
+
+# Regenerate markdown table and verify links
+pip install requests argparse pytablewritter termcolor
+./gen_md.py --verify
 ```
 
 ## List of Problems
@@ -33,16 +37,16 @@ coverage html
 |    5 | [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)                                   | [src](leetcode/p0005_longest_palindromic_substring.py)                  | [tst](tests/test_p0005_longest_palindromic_substring.py)                  |
 |    6 | [Zigzag Conversion](https://leetcode.com/problems/zigzag-conversion/)                                                           | [src](leetcode/p0006_zigzag_conversion.py)                              | [tst](tests/test_p0006_zigzag_conversion.py)                              |
 |    7 | [Reverse Integer](https://leetcode.com/problems/reverse-integer/)                                                               | [src](leetcode/p0007_reverse_integer.py)                                | [tst](tests/test_p0007_reverse_integer.py)                                |
-|    8 | [String To Integer](https://leetcode.com/problems/string-to-integer/)                                                           | [src](leetcode/p0008_string_to_integer.py)                              | [tst](tests/test_p0008_string_to_integer.py)                              |
+|    8 | [String To Integer Atoi](https://leetcode.com/problems/string-to-integer-atoi/)                                                 | [src](leetcode/p0008_string_to_integer_atoi.py)                         | [tst](tests/test_p0008_string_to_integer_atoi.py)                         |
 |    9 | [Palindrome Number](https://leetcode.com/problems/palindrome-number/)                                                           | [src](leetcode/p0009_palindrome_number.py)                              | [tst](tests/test_p0009_palindrome_number.py)                              |
-|   10 | [Reg Exp Match](https://leetcode.com/problems/reg-exp-match/)                                                                   | [src](leetcode/p0010_reg_exp_match.py)                                  | [tst](tests/test_p0010_reg_exp_match.py)                                  |
+|   10 | [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)                                       | [src](leetcode/p0010_regular_expression_matching.py)                    | [tst](tests/test_p0010_regular_expression_matching.py)                    |
 |   11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water/)                                           | [src](leetcode/p0011_container_with_most_water.py)                      | [tst](tests/test_p0011_container_with_most_water.py)                      |
 |   12 | [Integer To Roman](https://leetcode.com/problems/integer-to-roman/)                                                             | [src](leetcode/p0012_integer_to_roman.py)                               | [tst](tests/test_p0012_integer_to_roman.py)                               |
 |   13 | [Roman To Integer](https://leetcode.com/problems/roman-to-integer/)                                                             | [src](leetcode/p0013_roman_to_integer.py)                               | [tst](tests/test_p0013_roman_to_integer.py)                               |
 |   14 | [Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)                                                   | [src](leetcode/p0014_longest_common_prefix.py)                          | [tst](tests/test_p0014_longest_common_prefix.py)                          |
 |   15 | [3Sum](https://leetcode.com/problems/3sum/)                                                                                     | [src](leetcode/p0015_3sum.py)                                           | [tst](tests/test_p0015_3sum.py)                                           |
 |   16 | [3Sum Closest](https://leetcode.com/problems/3sum-closest/)                                                                     | [src](leetcode/p0016_3sum_closest.py)                                   | [tst](tests/test_p0016_3sum_closest.py)                                   |
-|   17 | [Letter Combinations](https://leetcode.com/problems/letter-combinations/)                                                       | [src](leetcode/p0017_letter_combinations.py)                            | [tst](tests/test_p0017_letter_combinations.py)                            |
+|   17 | [Letter Combinations Of A Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)                   | [src](leetcode/p0017_letter_combinations_of_a_phone_number.py)          | [tst](tests/test_p0017_letter_combinations_of_a_phone_number.py)          |
 |   18 | [4Sum](https://leetcode.com/problems/4sum/)                                                                                     | [src](leetcode/p0018_4sum.py)                                           | [tst](tests/test_p0018_4sum.py)                                           |
 |   19 | [Nth From End](https://leetcode.com/problems/nth-from-end/)                                                                     | [src](leetcode/p0019_nth_from_end.py)                                   | [tst](tests/test_p0019_nth_from_end.py)                                   |
 |   20 | [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)                                                           | [src](leetcode/p0020_valid_parentheses.py)                              | [tst](tests/test_p0020_valid_parentheses.py)                              |
