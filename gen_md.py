@@ -6,6 +6,7 @@ import os
 import requests
 from argparse import ArgumentParser
 from pytablewriter import MarkdownTableWriter
+from termcolor import colored
 
 
 VERIFY_LINKS = False
@@ -23,12 +24,15 @@ GITHUB_URL_TEMPLATE = 'https://github.com/weak-head/leetcode/blob/master/{}'
 
 def verify_url(url):
     if VERIFY_LINKS:
-        r = requests.get(url, timeout=1)
-        if r.status_code != 200:
-            print('  Broken link [{status}]: {link}'.format(
+        try:
+            r = requests.get(url, timeout=3)
+            if r.status_code != 200:
+                raise Exception('broken link')
+        except:
+            print(colored('  Broken link [{status}]: {link}'.format(
                 status=r.status_code,
                 link=url
-            ))
+            ), 'red'))
             return False
     return True
 
@@ -36,9 +40,9 @@ def verify_url(url):
 def verify_file(file_path):
     if VERIFY_LINKS:
         if not os.path.isfile(file_path):
-            print('  Missing file: {path}'.format(
+            print(colored('  Missing file: {path}'.format(
                 path=file_path
-            ))
+            ), 'yellow'))
             return False
     return True
 
@@ -52,7 +56,7 @@ def next_problem(id, title):
 
 def verification_status(id, title, success):
     if success:
-        print('  OK')
+        print(colored('  OK', 'green'))
 
 
 def parse_filename(file_name):
@@ -144,6 +148,8 @@ if __name__ == '__main__':
 
     VERIFY_LINKS = args.verify
 
-    refresh_markdown('README.md')
-
-    print('\ndone\n')
+    try:
+        refresh_markdown('README.md')
+        print('\ndone\n')
+    except:
+        print('\nterminated\n')

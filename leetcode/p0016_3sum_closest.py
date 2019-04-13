@@ -21,8 +21,3 @@ def threeSumClosest(nums: List[int], target: int) -> int:
             else:
                 r_ix = r_ix - 1
     return closest_sum
-
-if __name__ == '__main__':
-    assert threeSumClosest([-1,2,1,-4], 1) == 2
-
-    print('done')
