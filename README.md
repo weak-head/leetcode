@@ -21,10 +21,22 @@ coverage run -m pytest
 # Output the coverage report
 coverage report
 coverage html
+```
 
-# Regenerate markdown table and verify links
+### Create skeleton for a new problem and update Readme
+
+```bash
+pip install requests argparse termcolor
+
+scripts/touch.py <id> <url>
+```
+
+### Regenerate markdown table and verify links
+
+```bash
 pip install requests argparse pytablewritter termcolor
-./gen_md.py --verify
+
+scripts/genmd.py --verify
 ```
 
 ## List of Problems
