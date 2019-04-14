@@ -12,10 +12,3 @@ def clumsy(N: int) -> int:
             n_clumsy = n_clumsy - (n1 * n2 // n3) + n4
         ix = ix - 4
     return n_clumsy
-
-if __name__ == '__main__':
-    # 10 * 9 / 8 + 7 - 6 * 5 / 4 + 3 - 2 * 1
-    assert clumsy(10) == 12
-    assert clumsy(4) == 7
-
-    print('passed')

@@ -47,11 +47,3 @@ def search(nums: List[int], target: int) -> int:
                 lix = mix + 1
 
     return -1
-
-if __name__ == '__main__':
-    assert search([1], 1) == 0
-    assert search([4,5,6,7,0,1,2], 3) == -1
-    assert search([4,5,6,7,0,1,2], 0) == 4
-    assert search([4,5,6,7,0,1,2], 1) == 5
-
-    print('passed')

@@ -25,12 +25,3 @@ def minDominoRotations(A: List[int], B: List[int]) -> int:
             swap_b = swap_b + 1
 
     return min(swap_a, swap_b)
-
-
-if __name__ == '__main__':
-    assert minDominoRotations([2,1,2,4,2,2], [5,2,6,2,3,2]) == 2
-    assert minDominoRotations([3,5,1,2,3], [3,6,3,3,4]) == -1
-    assert minDominoRotations([3,3,3,3,3], [0,0,0,2,0]) == 0
-    assert minDominoRotations([1,2,1,1,1,2,2,2], [2,1,2,2,2,2,2,2]) == 1
-
-    print('passed')
