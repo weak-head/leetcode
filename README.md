@@ -23,7 +23,7 @@ coverage report
 coverage html
 ```
 
-### Create skeleton for a new problem and update Readme
+### Create skeleton for a new problem and update the readme
 
 ```bash
 pip install requests argparse termcolor

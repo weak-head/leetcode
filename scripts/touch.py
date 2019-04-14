@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''Creates a template for the new problem'''
+'''Creates the template for a new problem'''
 
 import os
 import requests
@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 from argparse import ArgumentParser
 from termcolor import colored
 from genmd import refresh_markdown
+
 
 VERIFY = True
 
@@ -118,6 +119,7 @@ if __name__ == '__main__':
         url = args.url
 
         if create_files(id, url):
-            refresh_markdown('README.md')
+            refresh_markdown('README.md', False, True)
+            print(colored('Updated README.md\n', 'green'))
     except Exception as e:
         print(colored('\nfailed: {}\n'.format(e), 'red'))
