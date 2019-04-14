@@ -50,20 +50,3 @@ def longestValidParentheses(s: str) -> int:
                 max_len = max(max_len, ix - last_op)
 
     return max_len
-
-
-
-if __name__ == '__main__':
-    assert longestValidParentheses('') == 0
-    assert longestValidParentheses('(()') == 2
-    assert longestValidParentheses(')))(((') == 0
-    assert longestValidParentheses('()()()') == 6
-    assert longestValidParentheses('(()()())') == 8
-    assert longestValidParentheses('()())()()()') == 6
-    assert longestValidParentheses(')((()))())(())') == 8
-    assert longestValidParentheses(')((()))())((((()))))') == 10
-    assert longestValidParentheses('()(()') == 2
-    assert longestValidParentheses('()((())') == 4
-    assert longestValidParentheses('(()(((()') == 2
-
-    print('passed')

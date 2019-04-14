@@ -21,11 +21,3 @@ def strStr(haystack: str, needle: str) -> int:
         h_ix = h_ix + 1
 
     return -1
-
-if __name__ == '__main__':
-    assert strStr('abbba', 'bba') == 2
-    assert strStr('asb', '') == 0
-    assert strStr('kdf', 'abc') == -1
-    assert strStr('abba', 'abbaa') == -1
-
-    print('passed')
