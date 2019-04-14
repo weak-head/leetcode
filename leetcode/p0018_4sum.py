@@ -75,14 +75,3 @@ def fourSum(nums: List[int], target: int) -> List[List[int]]:
 
     get_sum(0, len(nums) - 1, 4, target, [])
     return result
-
-
-if __name__ == '__main__':
-
-    nsum = fourSum([1, 0, -1, 0, -2, 2], 0)
-    assert [-1,  0, 0, 1] in nsum
-    assert [-2, -1, 1, 2] in nsum
-    assert [-2,  0, 0, 2] in nsum
-    assert len(nsum) == 3
-
-    print('passed')

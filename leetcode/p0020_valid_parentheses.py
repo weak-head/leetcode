@@ -1,4 +1,4 @@
-def isValid(self, s: str) -> bool:
+def isValid(s: str) -> bool:
     open_map = {'(': ')', '{': '}', '[': ']'}
     close_map = {')', '}', ']'}
     stack = []

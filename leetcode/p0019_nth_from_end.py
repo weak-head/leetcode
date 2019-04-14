@@ -3,7 +3,7 @@ class ListNode:
         self.val = x
         self.next = None
 
-def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+def removeNthFromEnd(head: ListNode, n: int) -> ListNode:
     node, p_node, d_node, k = head, None, None, 1
     while node is not None:
 
