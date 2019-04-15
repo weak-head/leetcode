@@ -15,11 +15,13 @@ before_install:
   - sudo apt-get install python-virtualenv
 
 install:
-  - pip3 install codecov pytest-timeout
+  - pip3 install codecov codacy-coverage pytest-timeout
 
 script:
   - coverage run -m pytest
+  - coverage xml
   - coverage report
 
 after_success:
   - codecov
+  - python-codacy-coverage -r coverage.xml
