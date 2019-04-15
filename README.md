@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/weak-head/leetcode.svg?branch=master)](https://travis-ci.org/weak-head/leetcode)
 [![codecov](https://codecov.io/gh/weak-head/leetcode/branch/master/graph/badge.svg)](https://codecov.io/gh/weak-head/leetcode)
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
 ## Building and testing
 
