@@ -71,32 +71,3 @@ def mergeKLists_pq(lists):
             q.put(PriorityEntry(current.next.val, current.next))
 
     return head.next
-
-# ------------
-
-def to_list_node(l: List[int]) -> ListNode:
-    head = node = ListNode(None)
-    for l_ix in range(len(l)):
-        node.next = ListNode(l[l_ix])
-        node = node.next
-
-    return head.next
-
-
-def from_list_node(list_node: ListNode):
-    while list_node is not None:
-        yield list_node.val
-        list_node = list_node.next
-
-
-if __name__ == '__main__':
-    a = to_list_node([1, 4, 5])
-    b = to_list_node([1, 3, 4])
-    c = to_list_node([2, 6])
-
-    abc = mergeKLists([a, b, c])
-    abc_gen = from_list_node(abc)
-
-    assert list(abc_gen) == [1, 1, 2, 3, 4, 4, 5, 6]
-
-    print('passed')
