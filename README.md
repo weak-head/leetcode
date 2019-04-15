@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/weak-head/leetcode.svg?branch=master)](https://travis-ci.org/weak-head/leetcode)
 [![codecov](https://codecov.io/gh/weak-head/leetcode/branch/master/graph/badge.svg)](https://codecov.io/gh/weak-head/leetcode)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fcb957dc188a49459a29aaf9f102df10)](https://www.codacy.com/app/weak-head/leetcode?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=weak-head/leetcode&amp;utm_campaign=Badge_Grade)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
 ## Building and testing
