@@ -1,10 +1,29 @@
 # leetcode
 
-[![Build Status](https://travis-ci.org/weak-head/leetcode.svg?branch=master)](https://travis-ci.org/weak-head/leetcode)
-[![codecov](https://codecov.io/gh/weak-head/leetcode/branch/master/graph/badge.svg)](https://codecov.io/gh/weak-head/leetcode)
-[![Codacy Coverage](https://api.codacy.com/project/badge/Coverage/fcb957dc188a49459a29aaf9f102df10)](https://www.codacy.com/app/weak-head/leetcode?utm_source=github.com&utm_medium=referral&utm_content=weak-head/leetcode&utm_campaign=Badge_Coverage)
-[![Codacy Code Quality](https://api.codacy.com/project/badge/Grade/fcb957dc188a49459a29aaf9f102df10)](https://www.codacy.com/app/weak-head/leetcode?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=weak-head/leetcode&amp;utm_campaign=Badge_Grade)
-[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![Build Status][travis-img]][travis-url]
+[![codecov][codecov-img]][codecov-url]
+[![Codacy Coverage][codacy-cov-img]][codacy-cov-url]
+[![Codacy Code Quality][codacy-qlt-img]][codacy-qlt-url]
+[![Number of files][tokei-ln-img]][tokei-ln-url]
+[![Python 3.6][python-36-img]][python-36-url]
+
+[travis-img]: https://travis-ci.org/weak-head/leetcode.svg?branch=master
+[travis-url]: https://travis-ci.org/weak-head/leetcode
+
+[codecov-img]: https://codecov.io/gh/weak-head/leetcode/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/weak-head/leetcode
+
+[codacy-cov-img]: https://api.codacy.com/project/badge/Coverage/fcb957dc188a49459a29aaf9f102df10
+[codacy-cov-url]: https://app.codacy.com/project/weak-head/leetcode/dashboard
+
+[codacy-qlt-img]: https://api.codacy.com/project/badge/Grade/fcb957dc188a49459a29aaf9f102df10
+[codacy-qlt-url]: https://app.codacy.com/project/weak-head/leetcode/dashboard
+
+[tokei-ln-img]: https://tokei.rs/b1/github/weak-head/leetcode?category=code
+[tokei-ln-url]: https://github.com/weak-head/leetcode/tree/master/leetcode
+
+[python-36-img]: https://img.shields.io/badge/python-3.6-blue.svg
+[python-36-url]: https://www.python.org/downloads/release/python-360/
 
 ## Building and testing
 
@@ -29,7 +48,7 @@ coverage html
 ### Create skeleton for a new problem and update the readme
 
 ```bash
-pip install requests argparse termcolor
+pip install requests argparse pytablewritter termcolor
 
 scripts/touch.py <id> <url>
 ```
