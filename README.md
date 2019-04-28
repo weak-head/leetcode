@@ -61,6 +61,12 @@ pip install requests argparse pytablewritter termcolor
 scripts/genmd.py --verify
 ```
 
+## Try it
+
+Try the `leetcode` repo in a free online workspace using Gitpod:
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/weak-head/leetcode/)
+
 ## List of Problems
 |  #   |                                                                       Title                                                                       |                                     Solution                                     |                                     Test cases                                     |
 |-----:|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
