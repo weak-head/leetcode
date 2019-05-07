@@ -45,6 +45,13 @@ coverage report
 coverage html
 ```
 
+### Configure pre-commit hook
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
 ### Create skeleton for a new problem and update the readme
 
 ```bash
