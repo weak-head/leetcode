@@ -1,5 +1,6 @@
 .vscode
 
+*.egg
 *.egg-info
 venv
 
