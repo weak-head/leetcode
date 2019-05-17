@@ -75,7 +75,8 @@ def backtrack3(target, comb, candidates, result):
         return
 
     cnd = list(candidates)
-    while len(cnd) > 0:
+    while cnd:
         c = cnd[0]
-        backtrack3(target - c, comb + [c], cnd, result)
+        if c <= target:
+            backtrack3(target - c, comb + [c], cnd, result)
         cnd.pop(0)
