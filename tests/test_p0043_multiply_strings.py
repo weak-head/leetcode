@@ -1,5 +1,11 @@
 import pytest
-from leetcode.p0043_multiply_strings import multiply, multiply2, add, build_muls
+from leetcode.p0043_multiply_strings import (
+    multiply,
+    multiply2,
+    multiply3,
+    add,
+    build_muls,
+)
 
 
 @pytest.mark.parametrize(
@@ -18,6 +24,7 @@ from leetcode.p0043_multiply_strings import multiply, multiply2, add, build_muls
 def test_multipy(a, b, expectation):
     assert multiply(a, b) == expectation
     assert multiply2(a, b) == expectation
+    assert multiply3(a, b) == expectation
 
 
 @pytest.mark.parametrize(

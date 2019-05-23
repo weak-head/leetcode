@@ -91,15 +91,13 @@ def addc(d1: str, d2: str, carry: int) -> (str, int):
 # ---------------------------
 
 
-def to_int(c: str) -> int:
-    return ord(c) - ord("0")
-
-
-def from_int(c: int) -> str:
-    return chr(ord("0") + c)
-
-
 def multiply2(num1: str, num2: str) -> str:
+    def to_int(c: str) -> int:
+        return ord(c) - ord("0")
+
+    def from_int(c: int) -> str:
+        return chr(ord("0") + c)
+
     num1_len, num2_len = len(num1), len(num2)
     res = [0] * (num1_len + num2_len)
 
@@ -120,3 +118,28 @@ def multiply2(num1: str, num2: str) -> str:
             sres.append(from_int(v))
 
     return "".join(sres) if sres != [] else "0"
+
+
+# ---------------------------
+
+
+def multiply3(num1: str, num2: str) -> str:
+    def to_int(s: str) -> int:
+        d, res = 1, 0
+        for v in range(len(s) - 1, -1, -1):
+            c = ord(s[v]) - ord("0")
+            res = res + (c * d)
+            d = d * 10
+        return res
+
+    def to_str(n: int) -> str:
+        res = []
+        while n != 0:
+            n, v = divmod(n, 10)
+            res.append(chr(ord("0") + v))
+        return "".join(reversed(res)) if res != [] else "0"
+
+    n1 = to_int(num1)
+    n2 = to_int(num2)
+    r = n1 * n2
+    return to_str(r)
