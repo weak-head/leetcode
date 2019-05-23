@@ -86,3 +86,37 @@ def addc(d1: str, d2: str, carry: int) -> (str, int):
     n1, n2 = nums[d1], nums[d2]
     res = n1 + n2 + carry
     return adds[res]
+
+
+# ---------------------------
+
+
+def to_int(c: str) -> int:
+    return ord(c) - ord("0")
+
+
+def from_int(c: int) -> str:
+    return chr(ord("0") + c)
+
+
+def multiply2(num1: str, num2: str) -> str:
+    num1_len, num2_len = len(num1), len(num2)
+    res = [0] * (num1_len + num2_len)
+
+    for ix1 in range(num1_len - 1, -1, -1):
+        for ix2 in range(num2_len - 1, -1, -1):
+            mul = to_int(num1[ix1]) * to_int(num2[ix2])
+
+            rix1 = ix1 + ix2
+            rix2 = rix1 + 1
+
+            mul = mul + res[rix2]
+            res[rix1] = res[rix1] + (mul // 10)
+            res[rix2] = mul % 10
+
+    sres = []
+    for v in res:
+        if not (len(sres) == 0 and v == 0):
+            sres.append(from_int(v))
+
+    return "".join(sres) if sres != [] else "0"
