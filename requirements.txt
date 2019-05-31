@@ -1,5 +1,6 @@
 wheel
 pytest
+pytest-timeout
 coverage
 requests
 argparse

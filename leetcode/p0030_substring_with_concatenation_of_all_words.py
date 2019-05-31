@@ -4,7 +4,7 @@ from collections import Counter
 
 def findSubstring(s: str, words: List[str]) -> List[int]:
     """
-    Slow for long inputs
+    Extremely slow and unusable for long inputs.
     """
     if not s or not words:
         return []
@@ -45,15 +45,20 @@ def findSubstring2(s, words):
     if not s or not words:
         return []
 
-    sn = len(s)
-    wn, wl = len(words[0]), len(words)
+    sn, wn, wl = len(s), len(words[0]), len(words)
     wset = Counter(words)
     res = []
 
+    # For every possible offset,
+    # we are building offset map with the
+    # current state of the word match.
+    # In case if all values in the particular
+    # offset are zeroes it means that we have
+    # the combination match.
     offsets = {}
-    for ix in range(0, wn):
+    for ix in range(wn):
         offsets[ix] = wset.copy()
-        for wi in range(len(words)):
+        for wi in range(wl):
             word = s[ix + (wi * wn) : ix + (wi * wn) + wn]
             if word in wset:
                 offsets[ix][word] -= 1
@@ -61,6 +66,9 @@ def findSubstring2(s, words):
         if isMatch(ix, offsets):
             res.append(ix)
 
+    # Using the sliding window we update the state
+    # of the each particular offset, tracking if
+    # it is the match that we are looking for.
     si = wn
     while si < sn:
         offset = si % wn
@@ -86,16 +94,3 @@ def isMatch(ix, d):
         if val != 0:
             return False
     return True
-
-
-if __name__ == "__main__":
-    # print(findSubstring2("barfoothefoobarman", ["foo", "bar"]))
-    # print(findSubstring2("wordgoodgoodgoodbestword", ["word", "good", "best", "word"]))
-    # print(findSubstring("barfoofoobarthefoobarman", ["bar", "foo", "the"]))
-    # print(findSubstring2("barfoofoobarthefoobarman", ["bar", "foo", "the"]))
-    print(
-        findSubstring2(
-            "lingmindraboofooowingdingbarrwingmonkeypoundcake",
-            ["fooo", "barr", "wing", "ding", "wing"],
-        )
-    )
