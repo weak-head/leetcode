@@ -1,0 +1,6 @@
+pytest
+coverage
+requests
+argparse
+pytablewriter
+termcolor

@@ -32,40 +32,38 @@
 python3 -m venv venv
 . venv/bin/activate
 
-# Install test dependencies and the module
-pip install pytest coverage
-pip install --editable .
+# Install dependencies
+make install_dependencies
 
-# Run all test cases and generate code coverage
-pytest
-coverage run -m pytest
-
-# Output the coverage report
-coverage report
-coverage html
-```
-
-### Configure pre-commit hook
-
-```bash
-pip install pre-commit
-pre-commit install
+# Run test cases and generate the code coverage report
+make report
 ```
 
 ### Create skeleton for a new problem and update the readme
 
 ```bash
-pip install requests argparse pytablewritter termcolor
-
-scripts/touch.py <id> <url>
+# Create a new template for the problem
+# Example:
+#   make new 1 https://leetcode.com/problems/two-sum/
+make new <id> <url>
 ```
 
 ### Regenerate markdown table and verify links
 
 ```bash
-pip install requests argparse pytablewritter termcolor
+# Re-generate markdown, no verification
+make regenerate
 
-scripts/genmd.py --verify
+# Re-generate and verify links
+make verify
+```
+
+### Configure pre-commit hook
+
+```bash
+# Optional, enable pre-commit hook
+pip install pre-commit
+pre-commit install
 ```
 
 ## Try it
