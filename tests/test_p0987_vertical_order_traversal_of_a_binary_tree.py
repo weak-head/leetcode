@@ -21,42 +21,44 @@ def to_tree(arr):
     return _to_tree(arr, 0, len(arr))
 
 
+def arr_from_ix(d):
+    arr = []
+    maxv = max(d.keys())
+    for _ in range(maxv + 1):
+        arr.append(None)
+    for k, v in d.items():
+        arr[k] = v
+    return arr
+
+
 @pytest.mark.parametrize(
-    ("tree", "expectation"),
+    ("tree", "expectation", "from_ix"),
     (
-        ([3, 9, 20, None, None, 15, 7], [[9], [3, 15], [20], [7]]),
-        ([1, 2, 3, 4, 5, 6, 7], [[4], [2], [1, 5, 6], [3], [7]]),
+        ([3, 9, 20, None, None, 15, 7], [[9], [3, 15], [20], [7]], False),
+        ([1, 2, 3, 4, 5, 6, 7], [[4], [2], [1, 5, 6], [3], [7]], False),
         (
-            [
-                0,
-                10,
-                1,
-                None,
-                None,
-                2,
-                4,
-                3,
-                5,
-                None,
-                None,
-                6,
-                None,
-                7,
-                9,
-                8,
-                None,
-                None,
-                None,
-                None,
-                11,
-                None,
-                None,
-                12,
-            ],
-            [[8], [6], [10, 3], [0, 2, 7], [1, 5], [4, 9, 12], [11]],
+            {
+                0: 0,  # root
+                1: 10,  # left child of: 0
+                2: 1,  # right child of: 0
+                4: 7,  # r: 10
+                5: 2,  # l: 1
+                6: 4,  # r: 1
+                9: 3,  # l: 7
+                12: 5,  # r: 2
+                19: 6,  # l: 3
+                26: 12,  # r: 5
+                39: 8,  # l: 6
+                54: 11,  # r: 12
+                109: 9,  # l: 11
+            },
+            [[8], [6], [10, 3], [0, 2, 7], [1, 5], [4, 12, 9], [11]],
+            True,
         ),
     ),
 )
-def test_verticalTraversal(tree, expectation):
+def test_verticalTraversal(tree, expectation, from_ix):
+    if from_ix:
+        tree = arr_from_ix(tree)
     t = to_tree(tree)
     assert verticalTraversal(t) == expectation
