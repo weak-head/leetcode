@@ -21,21 +21,19 @@ def to_tree(arr):
     return _to_tree(arr, 0, len(arr))
 
 
-def arr_from_ix(d):
-    arr = []
+def to_arr(d):
     maxv = max(d.keys())
-    for _ in range(maxv + 1):
-        arr.append(None)
+    arr = [None] * (maxv + 1)
     for k, v in d.items():
         arr[k] = v
     return arr
 
 
 @pytest.mark.parametrize(
-    ("tree", "expectation", "from_ix"),
+    ("tree", "expectation"),
     (
-        ([3, 9, 20, None, None, 15, 7], [[9], [3, 15], [20], [7]], False),
-        ([1, 2, 3, 4, 5, 6, 7], [[4], [2], [1, 5, 6], [3], [7]], False),
+        ([3, 9, 20, None, None, 15, 7], [[9], [3, 15], [20], [7]]),
+        ([1, 2, 3, 4, 5, 6, 7], [[4], [2], [1, 5, 6], [3], [7]]),
         (
             {
                 0: 0,  # root
@@ -53,12 +51,11 @@ def arr_from_ix(d):
                 109: 9,  # l: 11
             },
             [[8], [6], [10, 3], [0, 2, 7], [1, 5], [4, 12, 9], [11]],
-            True,
         ),
     ),
 )
-def test_verticalTraversal(tree, expectation, from_ix):
-    if from_ix:
-        tree = arr_from_ix(tree)
+def test_verticalTraversal(tree, expectation):
+    if isinstance(tree, dict):
+        tree = to_arr(tree)
     t = to_tree(tree)
     assert verticalTraversal(t) == expectation
