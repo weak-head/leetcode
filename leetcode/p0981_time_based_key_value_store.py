@@ -1,4 +1,5 @@
 from bisect import insort_left, bisect_right
+from collections import defaultdict, OrderedDict
 
 # ------------------------------------------------------------
 
@@ -173,7 +174,7 @@ class TimeMapBisect:
             return None
 
         hist = self._tm[key]
-        ix = bisect_right(hist, TimeMap.TimeEntry(timestamp, None))
+        ix = bisect_right(hist, TimeMapBisect.TimeEntry(timestamp, None))
         if ix:
             return hist[ix - 1].value
         else:
@@ -183,7 +184,7 @@ class TimeMapBisect:
 # ------------------------------------------------------------------------
 
 
-class TimeMap:
+class TimeMapListTE:
     """Optimized version of TimeMapBisect
     were we are taking advantage of the fact that the
     time sequence is strictly increasing"""
@@ -202,15 +203,54 @@ class TimeMap:
     def set(self, key: str, value: str, timestamp: int) -> None:
         if key not in self._tm:
             self._tm[key] = []
-        self._tm[key].append(TimeMap.TimeEntry(timestamp, value))
+        self._tm[key].append(TimeMapListTE.TimeEntry(timestamp, value))
 
     def get(self, key: str, timestamp: int) -> str:
         if key not in self._tm:
             return None
 
         hist = self._tm[key]
-        ix = bisect_right(hist, TimeMap.TimeEntry(timestamp, None))
+        ix = bisect_right(hist, TimeMapListTE.TimeEntry(timestamp, None))
         if ix:
             return hist[ix - 1].value
         else:
             return ""
+
+
+# ------------------------------------------------------------------------
+
+
+class TimeMapOD:
+    """Extremely slow solution using combination of
+    default dictionary and ordered dictionary"""
+
+    def __init__(self):
+        self._tm = defaultdict(lambda: OrderedDict())
+
+    def set(self, key, value, time):
+        self._tm[key].update({time: value})
+
+    def get(self, key, time):
+        if key not in self._tm:
+            return ""
+
+        history = self._tm[key]
+        return history.get(time, history.get(self._search(history, time), ""))
+
+    def _search(self, history, time):
+        # the source of slowness is this conversion
+        # because each time we call search, we need to
+        # convert the entire history to list...
+        # allocate space, copy items...
+        # so even we are using binary search
+        # the overall time complexity is O(n)
+        hist = list(history)
+        print(hist)
+        lix, rix = 0, len(hist) - 1
+        while lix <= rix:
+            mix = (lix + rix) >> 1
+            if hist[mix] < time:
+                lix = mix + 1
+            else:
+                rix = mix - 1
+        return hist[rix] if rix >= 0 else ""

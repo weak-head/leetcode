@@ -1,9 +1,14 @@
 import pytest
 
-from leetcode.p0981_time_based_key_value_store import TimeMap, TimeMapAvl, TimeMapBisect
+from leetcode.p0981_time_based_key_value_store import (
+    TimeMapListTE,
+    TimeMapAvl,
+    TimeMapBisect,
+    TimeMapOD,
+)
 
 
-@pytest.mark.parametrize(("cls"), (TimeMap, TimeMapAvl, TimeMapBisect))
+@pytest.mark.parametrize(("cls"), (TimeMapListTE, TimeMapAvl, TimeMapBisect, TimeMapOD))
 def test_timemap(cls):
     tm = cls()
     assert tm.set("foo", "bar", 1) is None
