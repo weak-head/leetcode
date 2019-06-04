@@ -12,6 +12,9 @@ class Avl:
             self.right = None
             self.heigh = 1
 
+        def __gt__(self, other):
+            return self.data > other.data
+
     def __init__(self):
         self._root = None
 
@@ -19,22 +22,25 @@ class Avl:
         self._root = self._insert(self._root, v)
 
     def find(self, v):
-        return self._find(self._root, v)
+        nodes = []
+        self._find(self._root, v, nodes)
+        if not nodes:
+            return ""
+        return max(nodes).data
 
-    def _find(self, node, v):
+    def _find(self, node, v, nodes):
         if not node:
             return None
 
         if node.data == v:
-            return node.data
+            nodes.append(node)
+            return
 
         if node.data < v:
-            if node.right is None or (node.right is not None and node.right.data > v):
-                return node.data
-            else:
-                return self._find(node.right, v)
+            nodes.append(node)
+            return self._find(node.right, v, nodes)
         else:
-            return self._find(node.left, v)
+            return self._find(node.left, v, nodes)
 
     def _insert(self, node, data):
         if node is None:
@@ -135,7 +141,7 @@ class TimeMapAvl:
 
     def get(self, key: str, timestamp: int) -> str:
         if key not in self._tm:
-            return None
+            return ""
 
         hist = self._tm[key]
         te = hist.find(TimeMapAvl.TimeEntry(timestamp, None))
@@ -171,7 +177,7 @@ class TimeMapBisect:
 
     def get(self, key: str, timestamp: int) -> str:
         if key not in self._tm:
-            return None
+            return ""
 
         hist = self._tm[key]
         ix = bisect_right(hist, TimeMapBisect.TimeEntry(timestamp, None))
@@ -207,7 +213,7 @@ class TimeMapListTE:
 
     def get(self, key: str, timestamp: int) -> str:
         if key not in self._tm:
-            return None
+            return ""
 
         hist = self._tm[key]
         ix = bisect_right(hist, TimeMapListTE.TimeEntry(timestamp, None))
@@ -254,3 +260,44 @@ class TimeMapOD:
             else:
                 rix = mix - 1
         return hist[rix] if rix >= 0 else ""
+
+
+# ------------------------------------------------------------------------
+
+
+class TimeMap:
+    """The fastest solution using
+    hashmap and a list of tuples
+    with time and value.
+    Binary search with a few optimizations"""
+
+    def __init__(self):
+        self._tm = defaultdict(lambda: list())
+
+    def set(self, key, value, time):
+        self._tm[key].append((time, value))
+
+    def get(self, key, time):
+        if key not in self._tm:
+            return ""
+
+        hist = self._tm[key]
+        lx, rx = 0, len(hist) - 1
+
+        if hist[lx][0] > time:
+            return ""
+
+        if hist[rx][0] < time:
+            return hist[rx][1]
+
+        while lx <= rx:
+            mx = (lx + rx) >> 1
+            mx_time = hist[mx][0]
+            if mx_time == time:
+                return hist[mx][1]
+            elif mx_time < time:
+                lx = mx + 1
+            else:
+                rx = mx - 1
+
+        return hist[rx][1]
