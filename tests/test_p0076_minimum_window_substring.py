@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0076_minimum_window_substring import minWindow
+from leetcode.p0076_minimum_window_substring import minWindow, minWindow2
 
 
 @pytest.mark.parametrize(
@@ -13,3 +13,4 @@ from leetcode.p0076_minimum_window_substring import minWindow
 )
 def test_minWindow(s, t, r):
     assert minWindow(s, t) == r
+    assert minWindow2(s, t) == r
