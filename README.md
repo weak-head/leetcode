@@ -4,8 +4,8 @@
 [![codecov][codecov-img]][codecov-url]
 [![Codacy Coverage][codacy-cov-img]][codacy-cov-url]
 [![Codacy Code Quality][codacy-qlt-img]][codacy-qlt-url]
-[![Number of files][tokei-ln-img]][tokei-ln-url]
 [![Python 3.6][python-36-img]][python-36-url]
+[![][tokei-ln-img]][tokei-ln-url]
 
 [travis-img]: https://travis-ci.org/weak-head/leetcode.svg?branch=master
 [travis-url]: https://travis-ci.org/weak-head/leetcode
