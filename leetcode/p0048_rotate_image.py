@@ -12,3 +12,13 @@ def rotate(matrix):
             matrix[left[0]][left[1]] = matrix[bottom[0]][bottom[1]]
             matrix[bottom[0]][bottom[1]] = matrix[right[0]][right[1]]
             matrix[right[0]][right[1]] = temp
+
+
+def rotate2(matrix) -> None:
+    temp = list()
+    for col in range(len(matrix[0])):
+        for row in reversed(range(len(matrix))):
+            temp.append(matrix[row][col])
+    for row in range(len(matrix)):
+        for col in range(len(matrix[0])):
+            matrix[row][col] = temp.pop(0)
