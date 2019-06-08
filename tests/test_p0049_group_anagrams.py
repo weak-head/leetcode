@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0049_group_anagrams import groupAnagrams
+from leetcode.p0049_group_anagrams import groupAnagrams, groupAnagrams2, groupAnagrams3
 
 
 @pytest.mark.parametrize(
@@ -117,4 +117,10 @@ from leetcode.p0049_group_anagrams import groupAnagrams
 )
 def test_anagrams(strs, expectation):
     for res in groupAnagrams(strs):
+        assert res in expectation
+
+    for res in groupAnagrams2(strs):
+        assert res in expectation
+
+    for res in groupAnagrams3(strs):
         assert res in expectation
