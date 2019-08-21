@@ -1,5 +1,10 @@
 import pytest
-from leetcode.p0021_merge_two_sorted_lists import ListNode, merge, mergeTwoLists
+from leetcode.p0021_merge_two_sorted_lists import (
+    ListNode,
+    merge,
+    mergeTwoLists,
+    mergeTwoLists2,
+)
 
 
 def to_list(array):
@@ -11,22 +16,27 @@ def to_list(array):
 
 
 def from_list(head):
-    while head != None:
+    while head is not None:
         yield head.val
         head = head.next
 
 
-@pytest.mark.parametrize(('a', 'b', 'res'), (
-    ([], [], []),
-    ([], [1], [1]),
-    ([1], [], [1]),
-    ([1,2], [], [1,2]),
-    ([1,2,3,4,6], [5], [1,2,3,4,5,6]),
-    ([1, 5], [2,3,4,6], [1,2,3,4,5,6]),
-    ([1,3,5,7], [2,4,6], [1,2,3,4,5,6,7])
-))
+@pytest.mark.parametrize(
+    ("a", "b", "res"),
+    (
+        ([], [], []),
+        ([], [1], [1]),
+        ([1], [], [1]),
+        ([1, 2], [], [1, 2]),
+        ([1, 2, 3, 4, 6], [5], [1, 2, 3, 4, 5, 6]),
+        ([1, 5], [2, 3, 4, 6], [1, 2, 3, 4, 5, 6]),
+        ([1, 3, 5, 7], [2, 4, 6], [1, 2, 3, 4, 5, 6, 7]),
+    ),
+)
 def test_merge(a, b, res):
     head1 = merge(to_list(a), to_list(b))
     head2 = mergeTwoLists(to_list(a), to_list(b))
+    head3 = mergeTwoLists2(to_list(a), to_list(b))
     assert list(from_list(head1)) == res
     assert list(from_list(head2)) == res
+    assert list(from_list(head3)) == res
