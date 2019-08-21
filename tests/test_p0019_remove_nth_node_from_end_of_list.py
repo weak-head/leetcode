@@ -1,5 +1,9 @@
 import pytest
-from leetcode.p0019_remove_nth_node_from_end_of_list import removeNthFromEnd, ListNode
+from leetcode.p0019_remove_nth_node_from_end_of_list import (
+    removeNthFromEnd,
+    removeNthFromEnd2,
+    ListNode,
+)
 
 
 def to_list(array):
@@ -11,23 +15,46 @@ def to_list(array):
 
 
 def from_list(head):
-    while head != None:
+    while head is not None:
         yield head.val
         head = head.next
 
 
-@pytest.mark.parametrize(('array', 'n', 'expectation'), (
-    ([1,2,3,4,5], 1, [1,2,3,4]),
-    ([1,2,3,4,5], 10, [1,2,3,4,5]),
-    ([], 0, []),
-    ([], 10, []),
-    ([1,2,3,4,5], 2, [1,2,3,5]),
-    ([1,2,3,4,5], 3, [1,2,4,5]),
-    ([1,2,3,4,5], 4, [1,3,4,5]),
-    ([1,2,3,4,5], 5, [2,3,4,5])
-))
+@pytest.mark.parametrize(
+    ("array", "n", "expectation"),
+    (
+        ([1, 2, 3, 4, 5], 1, [1, 2, 3, 4]),
+        ([1, 2, 3, 4, 5], 10, [1, 2, 3, 4, 5]),
+        ([], 0, []),
+        ([], 10, []),
+        ([1, 2, 3, 4, 5], 2, [1, 2, 3, 5]),
+        ([1, 2, 3, 4, 5], 3, [1, 2, 4, 5]),
+        ([1, 2, 3, 4, 5], 4, [1, 3, 4, 5]),
+        ([1, 2, 3, 4, 5], 5, [2, 3, 4, 5]),
+    ),
+)
 def test_removeNthFromEnd(array, n, expectation):
     head = removeNthFromEnd(to_list(array), n)
+    result = list(from_list(head))
+
+    assert result == expectation
+
+
+@pytest.mark.parametrize(
+    ("array", "n", "expectation"),
+    (
+        ([1, 2, 3, 4, 5], 1, [1, 2, 3, 4]),
+        ([1, 2, 3, 4, 5], 10, [1, 2, 3, 4, 5]),
+        ([], 0, []),
+        ([], 10, []),
+        ([1, 2, 3, 4, 5], 2, [1, 2, 3, 5]),
+        ([1, 2, 3, 4, 5], 3, [1, 2, 4, 5]),
+        ([1, 2, 3, 4, 5], 4, [1, 3, 4, 5]),
+        ([1, 2, 3, 4, 5], 5, [2, 3, 4, 5]),
+    ),
+)
+def test_removeNthFromEnd2(array, n, expectation):
+    head = removeNthFromEnd2(to_list(array), n)
     result = list(from_list(head))
 
     assert result == expectation
