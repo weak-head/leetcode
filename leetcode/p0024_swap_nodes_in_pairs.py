@@ -1,4 +1,3 @@
-
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -10,7 +9,7 @@ def swapPairs(head: ListNode) -> ListNode:
     parent_prev = parent = None
     current.next, ix = head, 0
 
-    while current.next != None:
+    while current.next is not None:
         parent_prev = parent
         parent = current
         current = current.next
@@ -24,3 +23,13 @@ def swapPairs(head: ListNode) -> ListNode:
             current = parent
 
     return new_head.next
+
+
+def swapPairs2(head: ListNode) -> ListNode:
+    """More elegant solution"""
+    if head is None or head.next is None:
+        return head
+    temp = head.next
+    head.next = swapPairs2(temp.next)
+    temp.next = head
+    return temp
