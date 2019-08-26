@@ -38,14 +38,23 @@ def findSubstring(s: str, words: List[str]) -> List[int]:
     return matches
 
 
+# -------------------------------------------------------------------
+
+
 def findSubstring2(s, words):
     """
     Using sliding window.
+
+    We need to consider the cases when words,
+    are having some offset in the original string.
+    As an example the words: ['cat', 'dog'] are shifted
+    by two characters 'ab' in the string 'abcatdogbat',
+    and that's the valid scenario were the result is [2].
     """
     if not s or not words:
         return []
 
-    sn, wn, wl = len(s), len(words[0]), len(words)
+    sl, wn, wl = len(s), len(words[0]), len(words)
     wset = Counter(words)
     res = []
 
@@ -58,19 +67,19 @@ def findSubstring2(s, words):
     offsets = {}
     for ix in range(wn):
         offsets[ix] = wset.copy()
+
         for wi in range(wl):
             word = s[ix + (wi * wn) : ix + (wi * wn) + wn]
             if word in wset:
                 offsets[ix][word] -= 1
 
-        if isMatch(ix, offsets):
+        if isMatch(offsets[ix]):
             res.append(ix)
 
     # Using the sliding window we update the state
     # of the each particular offset, tracking if
     # it is the match that we are looking for.
-    si = wn
-    while si < sn:
+    for si in range(wn, sl):
         offset = si % wn
         prev_word = s[si - wn : si]
         next_word = s[si + (wn * wl) - wn : si + (wn * wl)]
@@ -81,16 +90,14 @@ def findSubstring2(s, words):
         if next_word in wset:
             offsets[offset][next_word] -= 1
 
-        if isMatch(offset, offsets):
+        if isMatch(offsets[offset]):
             res.append(si)
-
-        si += 1
 
     return res
 
 
-def isMatch(ix, d):
-    for val in d[ix].values():
+def isMatch(counter_state):
+    for val in counter_state.values():
         if val != 0:
             return False
     return True
