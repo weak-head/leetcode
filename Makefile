@@ -26,7 +26,7 @@ install:
 test: install
 	@coverage run -m pytest
 
-.PHONY: report
-report: test
+.PHONY: coverage
+coverage: test
 	@coverage html
 	@coverage report
