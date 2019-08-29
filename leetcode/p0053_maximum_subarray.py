@@ -12,36 +12,45 @@ def max_subarray(nums):
     return max(max_sums)
 
 
+# --------------------------------------------------------------------
+
+
 def max_subarray_2(nums):
     """
     Divide and conquer, O(n * log n)
     """
 
-    def max_sum(nums, lix, rix):
-        if lix > rix:
-            return float("-inf")
+    def max_cross_sum(nums, lix, mix, rix):
+        current_sum, left_sum = 0, float("-inf")
 
+        for ix in range(mix, lix - 1, -1):
+            current_sum += nums[ix]
+            if current_sum > left_sum:
+                left_sum = current_sum
+
+        current_sum, right_sum = 0, float("-inf")
+        for ix in range(mix + 1, rix + 1):
+            current_sum += nums[ix]
+            if current_sum > right_sum:
+                right_sum = current_sum
+
+        return left_sum + right_sum
+
+    def max_sum(nums, lix, rix):
         if lix == rix:
             return nums[lix]
 
         m = (lix + rix) >> 1
-        l_sums = max_sum(nums, lix, m - 1)
-        r_sums = max_sum(nums, m + 1, rix)
-
-        l_max_sum, r_max_sum = 0, 0
-        contiguous_sum = 0
-        for li in range(m - 1, lix - 1, -1):
-            contiguous_sum += nums[li]
-            l_max_sum = max(l_max_sum, contiguous_sum)
-
-        contiguous_sum = 0
-        for ri in range(m, rix + 1):
-            contiguous_sum += nums[ri]
-            r_max_sum = max(r_max_sum, contiguous_sum)
-
-        return max(l_max_sum + nums[m] + r_max_sum, l_sums, r_sums)
+        return max(
+            max_sum(nums, lix, m),
+            max_sum(nums, m + 1, rix),
+            max_cross_sum(nums, lix, m, rix),
+        )
 
     return max_sum(nums, 0, len(nums) - 1)
+
+
+# --------------------------------------------------------------------
 
 
 def max_subarray_3(nums):
@@ -67,6 +76,9 @@ def max_subarray_3(nums):
     return maxSum
 
 
+# --------------------------------------------------------------------
+
+
 def max_subarray_4(nums):
     max_sum, curr_sum = nums[0], 0
 
@@ -80,6 +92,9 @@ def max_subarray_4(nums):
             curr_sum = 0
 
     return max_sum
+
+
+# --------------------------------------------------------------------
 
 
 def max_subarray_5(nums):
