@@ -36,7 +36,7 @@ python3 -m venv venv
 make install_dependencies
 
 # Run test cases and generate the code coverage report
-make report
+make coverage
 ```
 
 ### Create skeleton for a new problem and update the readme
