@@ -66,7 +66,7 @@ def gen_table(verify=False, silent=False):
     header = ["#", "Title", "Solution", "Test cases"]
     table = []
 
-    for file in os.listdir("./leetcode"):
+    for file in sorted(os.listdir("./leetcode")):
         # if problem
         if file[0] == "p":
             id, name = parse_filename(file)
