@@ -14,16 +14,12 @@ verify:
 regenerate:
 	@python3 ./scripts/genmd.py
 
-.PHONY: install_dependencies
-install_dependencies:
-	@pip3 install -r requirements.txt
-
 .PHONY: install
 install:
 	@python3 setup.py install
 
 .PHONY: test
-test: install
+test:
 	@coverage run -m pytest
 
 .PHONY: coverage

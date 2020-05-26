@@ -4,7 +4,7 @@
 [![codecov][codecov-img]][codecov-url]
 [![Codacy Coverage][codacy-cov-img]][codacy-cov-url]
 [![Codacy Code Quality][codacy-qlt-img]][codacy-qlt-url]
-[![Python 3.6][python-36-img]][python-36-url]
+[![Python 3.8][python-38-img]][python-38-url]
 [![][tokei-ln-img]][tokei-ln-url]
 
 [travis-img]: https://travis-ci.org/weak-head/leetcode.svg?branch=master
@@ -22,18 +22,19 @@
 [tokei-ln-img]: https://tokei.rs/b1/github/weak-head/leetcode?category=code
 [tokei-ln-url]: https://github.com/weak-head/leetcode/tree/master/leetcode
 
-[python-36-img]: https://img.shields.io/badge/python-3.6-blue.svg
-[python-36-url]: https://www.python.org/downloads/release/python-360/
+[python-38-img]: https://img.shields.io/badge/python-3.8-blue.svg
+[python-38-url]: https://www.python.org/downloads/release/python-380/
 
 ## Building and testing
 
 ```bash
-# Setup and activate virtual environment
-python3 -m venv venv
-. venv/bin/activate
-
 # Install dependencies
-make install_dependencies
+pip3 install pipenv
+pipenv shell
+pipenv install
+
+# Optional, enable pre-commit hook
+pre-commit install
 
 # Run test cases and generate the code coverage report
 make coverage
@@ -56,14 +57,6 @@ make regenerate
 
 # Re-generate and verify links
 make verify
-```
-
-### Configure pre-commit hook
-
-```bash
-# Optional, enable pre-commit hook
-pip install pre-commit
-pre-commit install
 ```
 
 ## Try it
