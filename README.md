@@ -28,8 +28,12 @@
 ## Building and testing
 
 ```bash
+# Create virtual env
+pyenv virtualenv 3.9.0 leetcode
+pyenv local leetcode
+
 # Install dependencies
-pip3 install pipenv
+pip install pipenv
 pipenv shell
 pipenv install
 
