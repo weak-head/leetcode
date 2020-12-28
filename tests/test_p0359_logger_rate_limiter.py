@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0359_logger_rate_limiter import Logger
+from leetcode.p0359_logger_rate_limiter import Logger, Logger2
 
 
 @pytest.mark.parametrize(
@@ -24,5 +24,8 @@ from leetcode.p0359_logger_rate_limiter import Logger
 )
 def test_logger(a, expectation):
     logger = Logger()
+    logger2 = Logger2()
+
     for ix, val in enumerate(a):
         assert logger.shouldPrintMessage(val[0], val[1]) == expectation[ix]
+        assert logger2.shouldPrintMessage(val[0], val[1]) == expectation[ix]
