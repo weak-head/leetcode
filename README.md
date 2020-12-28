@@ -34,8 +34,7 @@ pyenv local leetcode
 
 # Install dependencies
 pip install pipenv
-pipenv shell
-pipenv install
+pipenv install --dev
 
 # Optional, enable pre-commit hook
 pre-commit install
