@@ -1,3 +1,6 @@
+import heapq
+
+
 class Interval:
     def __init__(self, start: int = None, end: int = None):
         self.start = start
@@ -51,3 +54,22 @@ def employeeFreeTime2(schedule: "[[Interval]]") -> "[Interval]":
             res.append((end, i.start))
         end = max(end, i.end)
     return res
+
+
+def employeeFreeTime3(schedule: "[[Interval]]") -> "[Interval]":
+    """
+    O(n * log(n))
+    """
+    pq = [(it.start, it.end) for em in schedule for it in em]
+    heapq.heapify(pq)  # O(n)
+
+    breaks = []
+    _, prev_end = heapq.heappop(pq)
+    while pq:  # O(n)
+        start, end = heapq.heappop(pq)  # O(log(n))
+        if prev_end < start:
+            breaks.append((prev_end, start))
+
+        prev_end = max(prev_end, end)
+
+    return breaks
