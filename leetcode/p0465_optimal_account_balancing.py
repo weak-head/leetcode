@@ -1,10 +1,29 @@
 from typing import List
 from collections import defaultdict
 
+"""
+This is NP-Complete problem, as shown here:
+
+    http://www.mathmeth.com/tom/files/settling-debts.pdf
+
+This problem could be tranformed to 3-partition problem:
+    https://en.wikipedia.org/wiki/3-partition_problem
+
+The two solutions below have complexity of O(n!) and O(n * 2^n)
+"""
+
 
 def minTransfers1(transactions: List[List[int]]) -> int:
     """
-    http://www.mathmeth.com/tom/files/settling-debts.pdf
+    DFS with backtracking
+
+    Time: O(n!)
+    Space: O(n)
+
+    There two optimizations, though it's still O(n!):
+        - skip same sign
+        - skip already tested (if the same as previously tested)
+
     """
 
     balance = defaultdict(int)
@@ -44,8 +63,9 @@ def minTransfers1(transactions: List[List[int]]) -> int:
 
 def minTransfers2(transactions: List[List[int]]) -> int:
     """
-    there are 2^N subproblems, each subproblem contributes to O(N) larger problems.
-    Running Time: O(N * 2^N),
+    Dynamic Programming, find max number of min subsets that sums to 0
+
+    Time: O(N * 2^N)
     Space: O(2^N)
     """
     persons = defaultdict(int)
@@ -59,16 +79,59 @@ def minTransfers2(transactions: List[List[int]]) -> int:
     dp = [0] * (2 ** N)  # dp[mask] = number of sets whose sum = 0
     sums = [0] * (2 ** N)  # sums[mask] = sum of numbers in mask
 
+    # Find the maximum number of min-subsets,
+    # such as each subset has a sum of 0.
+    #
+    # Example:
+    #   The following set (N=5):
+    #       [-2,2,-7,4,3]
+    #   Has two min-subsets (M=2):
+    #       {-2,2} & {-7,4,3}
+    #   To settle the debt (get sum of 0) number of transactions required:
+    #       len({-2,2}) - 1   = 1
+    #       len({-7,4,3}) - 1 = 2
+    #   The total transactions required:
+    #       (len({-2, -2}) - 1) + (len({-7,4,3}) - 1) = 3
+    #   That is same as (N-M)
+    #
+    # The optimal substructure:
+    #   {set}[mask] => subset of elements, whose position is '1' in the mask
+    #       {-2,2,-7,4,3}[01010] = {2,3}
+    #   dp[mask] => maximum number of min sets, that can be formed by elements in {set}[mask]
+    #   sum[mask] => sum of elements in {set}[mask]
+    #   sub_mask => has one less bits set to '1' than mask
+    #   Then we have:
+    #       if sum[mask] == 0:
+    #           dp[mask] = max(dp[sub_mask] + 1) for all possible sub_mask
+    #       else:
+    #           dp[mask] = max(dp[sub_mask]) for all possible sub_mask
+    #
+    #
+    # There are 2^N subsets of a set with N elements,
+    # each subset represented by the 'mask'
     for mask in range(2 ** N):
-        set_bit = 1
+
+        # Starting from the first element
+        current_element = 1
+        # try all the elements in the array
         for b in range(N):
-            if mask & set_bit == 0:
-                nxt = mask | set_bit
+
+            # We want to check only elements that are not in the current mask
+            if mask & current_element == 0:
+
+                # 'nxt' is the subset that is formed when we include
+                # the 'current_element' to the 'mask' subset
+                nxt = mask | current_element
+
+                # The sum for this 'nxt' subset
                 sums[nxt] = sums[mask] + amounts[b]
+
                 if sums[nxt] == 0:
                     dp[nxt] = max(dp[nxt], dp[mask] + 1)
                 else:
                     dp[nxt] = max(dp[nxt], dp[mask])
-            set_bit <<= 1
 
-    return N - dp[-1]
+            # Move to the next element
+            current_element <<= 1
+
+    return N - dp[-1]  # N - M
