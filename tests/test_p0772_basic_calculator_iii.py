@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0772_basic_calculator_iii import calculate
+from leetcode.p0772_basic_calculator_iii import calculate1, calculate2
 
 
 @pytest.mark.parametrize(
@@ -16,4 +16,5 @@ from leetcode.p0772_basic_calculator_iii import calculate
     ),
 )
 def test_calculate(a, expectation):
-    assert calculate(a) == expectation
+    assert calculate1(a) == expectation
+    assert calculate2(a) == expectation
