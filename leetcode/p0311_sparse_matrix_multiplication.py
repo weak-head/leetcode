@@ -17,7 +17,9 @@ def multiply(dimensions, mxa: [(int, int, int)], mxb: [(int, int, int)]) -> [[in
     n - number of non-zero elements in the matrix A
     m - number of non-zero elements in the matrix B
 
-    Space: O()
+    Space: O(r * c)
+    r - number of rows in the matrix A
+    c - number of columns in the matrix B
     """
     res = [[0 for _ in range(dimensions[1])] for _ in range(dimensions[0])]
     for ar, ac, av in mxa:
@@ -40,4 +42,4 @@ def compact(mx: [[int]]) -> [(int, int, int)]:
 
 
 def multiplySparse(mxa: [[int]], mxb: [[int]]) -> [[int]]:
-    return multiply((len(mxa), len(mxb[0]), compact(mxa), compact(mxb)))
+    return multiply((len(mxa), len(mxb[0])), compact(mxa), compact(mxb))
