@@ -61,9 +61,25 @@ from leetcode.{src} import {method}
 
 
 @pytest.mark.parametrize(('a', 'expectation'), (
-    ((), ()),
+    (
+        (
+            # a1
+        ),
+        (
+            # expectation1
+        )
+    ),
+
+    (
+        (
+            # a2
+        ),
+        (
+            # expectation2
+        )
+    ),
 ))
-def test_(a, expectation):
+def test_{method}(a, expectation):
     assert {method}(a) == expectation
 """
     ).format(
