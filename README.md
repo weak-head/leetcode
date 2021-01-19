@@ -8,10 +8,10 @@
 [![Python 3.9][python-39-img]][python-39-url]
 [![][tokei-ln-img]][tokei-ln-url]
 
-[travis-img]: https://travis-ci.org/weak-head/leetcode.svg?branch=master
+[travis-img]: https://travis-ci.org/weak-head/leetcode.svg?branch=main
 [travis-url]: https://travis-ci.org/weak-head/leetcode
 
-[codecov-img]: https://codecov.io/gh/weak-head/leetcode/branch/master/graph/badge.svg
+[codecov-img]: https://codecov.io/gh/weak-head/leetcode/branch/main/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/weak-head/leetcode
 
 [codacy-cov-img]: https://api.codacy.com/project/badge/Coverage/fcb957dc188a49459a29aaf9f102df10
@@ -21,7 +21,7 @@
 [codacy-qlt-url]: https://app.codacy.com/project/weak-head/leetcode/dashboard
 
 [tokei-ln-img]: https://tokei.rs/b1/github/weak-head/leetcode?category=code
-[tokei-ln-url]: https://github.com/weak-head/leetcode/tree/master/leetcode
+[tokei-ln-url]: https://github.com/weak-head/leetcode/tree/main/leetcode
 
 [python-39-img]: https://img.shields.io/badge/python-3.9-blue.svg
 [python-39-url]: https://www.python.org/downloads/release/python-390/
