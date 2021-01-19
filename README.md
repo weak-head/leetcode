@@ -4,6 +4,7 @@
 [![codecov][codecov-img]][codecov-url]
 [![Codacy Coverage][codacy-cov-img]][codacy-cov-url]
 [![Codacy Code Quality][codacy-qlt-img]][codacy-qlt-url]
+[![flake8][flake8-img]][flake8-url]
 [![Python 3.9][python-39-img]][python-39-url]
 [![][tokei-ln-img]][tokei-ln-url]
 
@@ -24,6 +25,9 @@
 
 [python-39-img]: https://img.shields.io/badge/python-3.9-blue.svg
 [python-39-url]: https://www.python.org/downloads/release/python-390/
+
+[flake8-img]: https://github.com/weak-head/leetcode/workflows/flake8/badge.svg
+[flake8-url]: https://github.com/weak-head/leetcode/actions?query=workflow%3Aflake8
 
 ## Building and testing
 
