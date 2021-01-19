@@ -1,18 +1,12 @@
-sudo: required
+os: linux
 dist: xenial
-
 language: python
-
-apt:
-  packages:
-    - python-dev
-
 python: 3.9
 
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get -y install python3-pip
-  - sudo apt-get install python-virtualenv
+  - apt -qq update
+  - apt -y install python3-pip
+  - apt install python-virtualenv
 
 install:
   - pip3 install codecov codacy-coverage pytest-timeout
