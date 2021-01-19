@@ -1,26 +1,20 @@
+"""Without using linear Manacher's algorithm"""
 
-'''Without using linear Manacher's algorithm'''
 
 def longestPalindrome(s: str) -> str:
-    if s is None or len(s) == 0:
-        return ''
+    """
+    Time: O(n^2)
+    Space: O(1)
+    """
 
-    s_len = len(s)
-    longest_l_ix, longest_r_ix = 0, 0
-    for ix in range(0, s_len):
+    def expand(s, l, r):
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            l -= 1
+            r += 1
+        return s[l + 1 : r]
 
-        # odd palindrome case, ix is a center of palindrome
-        l_ix, r_ix = ix - 1, ix + 1
-        while l_ix >= 0 and r_ix < s_len and s[l_ix] == s[r_ix]:
-            if (r_ix - l_ix) > (longest_r_ix - longest_l_ix):
-                longest_l_ix, longest_r_ix = l_ix, r_ix
-            l_ix, r_ix = l_ix - 1, r_ix + 1
-
-        # even palindrome case, ix is left half of a center
-        l_ix, r_ix = ix, ix + 1
-        while l_ix >= 0 and r_ix < s_len and s[l_ix] == s[r_ix]:
-            if (r_ix - l_ix) > (longest_r_ix - longest_l_ix):
-                longest_l_ix, longest_r_ix = l_ix, r_ix
-            l_ix, r_ix = l_ix - 1, r_ix + 1
-
-    return s[longest_l_ix:longest_r_ix + 1]
+    p = ""
+    for center in range(len(s)):
+        p = max(p, expand(s, center, center), key=len)
+        p = max(p, expand(s, center, center + 1), key=len)
+    return p
