@@ -15,6 +15,7 @@ requests = "*"
 argparse = "*"
 pytablewriter = "*"
 termcolor = "*"
+sortedcontainers = "*"
 
 [requires]
 python_version = "3.9"
