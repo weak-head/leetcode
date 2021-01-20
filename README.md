@@ -15,10 +15,10 @@
 [codecov-url]: https://codecov.io/gh/weak-head/leetcode
 
 [codacy-cov-img]: https://api.codacy.com/project/badge/Coverage/fcb957dc188a49459a29aaf9f102df10
-[codacy-cov-url]: https://app.codacy.com/project/weak-head/leetcode/dashboard
+[codacy-cov-url]: https://app.codacy.com/gh/weak-head/leetcode/dashboard?branch=main
 
-[codacy-qlt-img]: https://api.codacy.com/project/badge/Grade/fcb957dc188a49459a29aaf9f102df10
-[codacy-qlt-url]: https://app.codacy.com/project/weak-head/leetcode/dashboard
+[codacy-qlt-img]: https://app.codacy.com/project/badge/Grade/7780e21ba17046a3b43fe68a77677bed
+[codacy-qlt-url]: https://www.codacy.com/gh/weak-head/leetcode/dashboard?branch=main
 
 [tokei-ln-img]: https://tokei.rs/b1/github/weak-head/leetcode?category=code
 [tokei-ln-url]: https://github.com/weak-head/leetcode/tree/main/leetcode
@@ -32,6 +32,9 @@
 ## Building and testing
 
 ```bash
+# Install python
+pyenv install 3.9.0
+
 # Create virtual env
 pyenv virtualenv 3.9.0 leetcode
 pyenv local leetcode

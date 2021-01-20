@@ -4,9 +4,8 @@ language: python
 python: 3.9
 
 before_install:
-  - apt -qq update
-  - apt -y install python3-pip
-  - apt install python-virtualenv
+  - apt update
+  - apt install python3-pip python-virtualenv
 
 install:
   - pip3 install codecov codacy-coverage pytest-timeout
