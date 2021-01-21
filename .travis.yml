@@ -17,4 +17,4 @@ script:
 
 after_success:
   - codecov
-  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage.xml
