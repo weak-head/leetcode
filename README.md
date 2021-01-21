@@ -14,7 +14,7 @@
 [codecov-img]: https://codecov.io/gh/weak-head/leetcode/branch/main/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/weak-head/leetcode
 
-[codacy-cov-img]: https://api.codacy.com/project/badge/Coverage/fcb957dc188a49459a29aaf9f102df10
+[codacy-cov-img]: https://app.codacy.com/project/badge/Coverage/7780e21ba17046a3b43fe68a77677bed
 [codacy-cov-url]: https://app.codacy.com/gh/weak-head/leetcode/dashboard?branch=main
 
 [codacy-qlt-img]: https://app.codacy.com/project/badge/Grade/7780e21ba17046a3b43fe68a77677bed
