@@ -1,8 +1,11 @@
 from typing import List
 import sys
 
-# O(n^2)
+
 def threeSumClosest(nums: List[int], target: int) -> int:
+    """
+    O(n^2)
+    """
     nums.sort()
     closest_sum, diff, nums_len = sys.maxsize, sys.maxsize, len(nums)
     for l_base in range(0, nums_len - 2):
