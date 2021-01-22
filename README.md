@@ -7,6 +7,7 @@
 [![flake8][flake8-img]][flake8-url]
 [![CodeQL][codeql-img]][codeql-url]
 [![Python 3.9][python-39-img]][python-39-url]
+[![black][black-img]][black-url]
 [![][tokei-ln-img]][tokei-ln-url]
 
 [travis-img]: https://travis-ci.org/weak-head/leetcode.svg?branch=main
@@ -32,6 +33,9 @@
 
 [codeql-img]: https://github.com/weak-head/leetcode/workflows/CodeQL/badge.svg
 [codeql-url]: https://github.com/weak-head/leetcode/actions?query=workflow%3ACodeQL
+
+[black-img]: https://img.shields.io/badge/code%20style-black-000000.svg
+[black-url]: https://github.com/psf/black
 
 ## Building and testing
 
