@@ -5,6 +5,7 @@
 [![Codacy Coverage][codacy-cov-img]][codacy-cov-url]
 [![Codacy Code Quality][codacy-qlt-img]][codacy-qlt-url]
 [![flake8][flake8-img]][flake8-url]
+[![CodeQL][codeql-img]][codeql-url]
 [![Python 3.9][python-39-img]][python-39-url]
 [![][tokei-ln-img]][tokei-ln-url]
 
@@ -28,6 +29,9 @@
 
 [flake8-img]: https://github.com/weak-head/leetcode/workflows/flake8/badge.svg
 [flake8-url]: https://github.com/weak-head/leetcode/actions?query=workflow%3Aflake8
+
+[codeql-img]: https://github.com/weak-head/leetcode/workflows/CodeQL/badge.svg
+[codeql-url]: https://github.com/weak-head/leetcode/actions?query=workflow%3ACodeQL
 
 ## Building and testing
 
