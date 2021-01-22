@@ -1,4 +1,3 @@
-
 def clumsy(N: int) -> int:
     n_clumsy, ix = 0, N
     while ix >= 1:

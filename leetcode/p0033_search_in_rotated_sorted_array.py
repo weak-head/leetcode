@@ -1,12 +1,15 @@
 from typing import List
 
+
 def search(nums: List[int], target: int) -> int:
     if nums == []:
         return -1
 
     nums_len = len(nums)
     lix, rix = 0, nums_len - 1
-    while lix <= rix and (lix >= 0 and lix < nums_len) and (rix >= 0 and rix < nums_len):
+    while (
+        lix <= rix and (lix >= 0 and lix < nums_len) and (rix >= 0 and rix < nums_len)
+    ):
         mix = (lix + rix) >> 1
 
         # found match

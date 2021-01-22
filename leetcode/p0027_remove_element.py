@@ -1,5 +1,6 @@
 from typing import List
 
+
 def removeElement(nums: List[int], val: int) -> int:
     if nums == []:
         return 0

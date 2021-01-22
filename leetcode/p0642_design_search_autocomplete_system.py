@@ -18,8 +18,7 @@ class AutocompleteSystem1:
             self.addRecord(s, d)
 
     def addRecord(self, record: str, delta: int):
-        """
-        """
+        """"""
         node = self._root
         for char in record:
             node = self.addChild(node, char)

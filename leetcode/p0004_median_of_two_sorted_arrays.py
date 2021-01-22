@@ -1,5 +1,6 @@
 from typing import List
 
+
 def findMedianSortedArrays(a: List[int], b: List[int]) -> float:
     a_len, b_len = len(a), len(b)
     kth_index = (a_len + b_len) >> 1
@@ -10,10 +11,16 @@ def findMedianSortedArrays(a: List[int], b: List[int]) -> float:
         kth_2 = kth_elem(a, b, 0, a_len - 1, 0, b_len - 1, kth_index)
         return (kth_1 + kth_2) / 2
 
-def kth_elem(a: List[int], b: List[int],
-             a_l_ix: int, a_r_ix: int,
-             b_l_ix: int, b_r_ix: int,
-             kth_index: int) -> int:
+
+def kth_elem(
+    a: List[int],
+    b: List[int],
+    a_l_ix: int,
+    a_r_ix: int,
+    b_l_ix: int,
+    b_r_ix: int,
+    kth_index: int,
+) -> int:
     if a_l_ix > a_r_ix:
         return b[kth_index - a_l_ix]
     if b_l_ix > b_r_ix:

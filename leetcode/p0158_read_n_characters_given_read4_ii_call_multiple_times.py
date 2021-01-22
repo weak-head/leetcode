@@ -15,8 +15,7 @@ class Solution:
         self.q = deque()
 
     def read(self, buf: List[str], n: int) -> int:
-        """
-        """
+        """"""
         i = 0
         while i < n:
             if self.q:

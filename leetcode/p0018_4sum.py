@@ -1,7 +1,8 @@
 from typing import List
 
+
 def fourSum2(nums: List[int], target: int) -> List[List[int]]:
-    '''O(n^3)'''
+    """O(n^3)"""
     nums.sort()
     result = []
     nums_len = len(nums)
@@ -12,7 +13,9 @@ def fourSum2(nums: List[int], target: int) -> List[List[int]]:
             l, r = b + 1, nums_len - 1
             ab_sum = nums[a] + nums[b]
             while l < r:
-                if (nums[l] * 2 > (target - ab_sum)) or (nums[r] * 2 < (target - ab_sum)):
+                if (nums[l] * 2 > (target - ab_sum)) or (
+                    nums[r] * 2 < (target - ab_sum)
+                ):
                     break
 
                 lr_sum = nums[l] + nums[r]
@@ -41,8 +44,9 @@ def fourSum2(nums: List[int], target: int) -> List[List[int]]:
 
     return result
 
+
 def fourSum(nums: List[int], target: int) -> List[List[int]]:
-    '''Generalization to N-sum'''
+    """Generalization to N-sum"""
     nums.sort()
     result = []
 
@@ -61,17 +65,19 @@ def fourSum(nums: List[int], target: int) -> List[List[int]]:
 
                 if lr_sum < target:
                     l = l + 1
-                    while l < r and nums[l] == nums[l-1]:
+                    while l < r and nums[l] == nums[l - 1]:
                         l = l + 1
                 else:
                     r = r - 1
-                    while l < r and nums[r] == nums[r+1]:
+                    while l < r and nums[r] == nums[r + 1]:
                         r = r - 1
         # reduce
         else:
             for ix in range(l, r + 1):
-                if ix == l or (ix > l and nums[ix] != nums[ix-1]):
-                    get_sum(ix + 1, r, n - 1, target - nums[ix], current_sum + [nums[ix]])
+                if ix == l or (ix > l and nums[ix] != nums[ix - 1]):
+                    get_sum(
+                        ix + 1, r, n - 1, target - nums[ix], current_sum + [nums[ix]]
+                    )
 
     get_sum(0, len(nums) - 1, 4, target, [])
     return result

@@ -1,5 +1,6 @@
 from typing import List
 
+
 def minDominoRotations(A: List[int], B: List[int]) -> int:
     a_len, occurrences = len(A), [0] * 7
 

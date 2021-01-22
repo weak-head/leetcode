@@ -1,5 +1,6 @@
 from typing import List
 
+
 def removeDuplicates(nums: List[int]) -> int:
     if nums == []:
         return 0

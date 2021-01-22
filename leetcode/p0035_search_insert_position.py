@@ -1,5 +1,6 @@
 from typing import List
 
+
 def searchInsert(nums: List[int], target: int) -> int:
     lix, rix = 0, len(nums) - 1
     while lix <= rix:

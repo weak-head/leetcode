@@ -1,11 +1,10 @@
-
 def longestValidParentheses2(s: str) -> int:
     # stack to keep indexes of opened parentheses
     # result map to fill matching parentheses
     st, res_map = [], [0] * len(s)
 
     for ix, c in enumerate(s):
-        if c == '(':
+        if c == "(":
             st.append(ix)
         # c == ')'
         else:
@@ -29,16 +28,16 @@ def longestValidParentheses2(s: str) -> int:
 
 
 def longestValidParentheses(s: str) -> int:
-    '''
+    """
     optimization of the previous solution,
     that requires only one pass
-    '''
+    """
 
     # stack to keep indexes of opened parentheses
     st, max_len = [-1], 0
 
     for ix, c in enumerate(s):
-        if c == '(':
+        if c == "(":
             st.append(ix)
         # c == ')'
         else:

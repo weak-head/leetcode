@@ -1,6 +1,6 @@
 def power(x: float, n: int) -> float:
     """
-        https://en.wikipedia.org/wiki/Exponentiation_by_squaring
+    https://en.wikipedia.org/wiki/Exponentiation_by_squaring
     """
     if n == 0:
         return 1
@@ -18,7 +18,7 @@ def power(x: float, n: int) -> float:
 
 def power2(x, n):
     """
-        Another variant
+    Another variant
     """
     if n == 0 or x == 1:
         return 1

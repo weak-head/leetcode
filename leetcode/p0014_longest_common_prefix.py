@@ -1,9 +1,9 @@
 from typing import List
 
-# Strainforward scanning
+
 def longestCommonPrefix2(strs: List[str]) -> str:
     if len(strs) == 0:
-        return ''
+        return ""
     common_prefix = list(strs[0])
     for s in strs:
         for s_ix in range(len(common_prefix) - 1, -1, -1):
@@ -16,10 +16,10 @@ def longestCommonPrefix2(strs: List[str]) -> str:
             return ""
     return "".join(common_prefix)
 
-# Checking n-th letter of a k-th string
+
 def longestCommonPrefix(strs: List[str]) -> str:
     if len(strs) == 0:
-        return ''
+        return ""
     for ix, current_char in enumerate(strs[0]):
         for s in strs:
             if len(s) <= ix:

@@ -1,5 +1,6 @@
 from typing import List
 
+
 def searchRange(nums: List[int], target: int) -> List[int]:
     l, r = 0, len(nums) - 1
     while l <= r:
@@ -12,6 +13,7 @@ def searchRange(nums: List[int], target: int) -> List[int]:
             r = m - 1
     return [-1, -1]
 
+
 def left(nums, target, lo, hi):
     while lo <= hi:
         m = (lo + hi) >> 1
@@ -20,6 +22,7 @@ def left(nums, target, lo, hi):
         else:
             lo = m + 1
     return lo
+
 
 def right(nums, target, lo, hi):
     while lo <= hi:

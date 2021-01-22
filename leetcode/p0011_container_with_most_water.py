@@ -1,20 +1,26 @@
 from typing import List
 
-# O(n^2)
+
 def maxArea3(heights: List[int]) -> int:
+    """
+    O(n^2)
+    """
     greatest_volume = 0
     for l_ix in range(0, len(heights)):
         for r_ix in range(l_ix, len(heights)):
             current_height = min(heights[l_ix], heights[r_ix])
             current_volume = (r_ix - l_ix) * current_height
             # if the current volume is greater than the current maximum
-            if (current_volume > greatest_volume):
+            if current_volume > greatest_volume:
                 greatest_volume = current_volume
     return greatest_volume
 
-# O(n)
-# greedy with overhead
+
 def maxArea2(heights: List[int]) -> int:
+    """
+    O(n)
+    Greedy with overhead
+    """
     max_height, h_len = 0, len(heights)
     coverage = [0] * (h_len)
     for ix in range(0, h_len):
@@ -27,7 +33,7 @@ def maxArea2(heights: List[int]) -> int:
         coverage[ix] = min(coverage[ix], max_height)
 
     for ix in range(0, h_len - 1):
-        coverage[ix] = min(coverage[ix], coverage[ix+1])
+        coverage[ix] = min(coverage[ix], coverage[ix + 1])
 
     max_volume, l_ix, r_ix = 0, 0, h_len - 2
     while l_ix <= r_ix:
@@ -41,6 +47,7 @@ def maxArea2(heights: List[int]) -> int:
             r_ix = r_ix - 1
 
     return max_volume
+
 
 # O(n)
 # greedy without overhead

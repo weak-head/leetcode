@@ -15,4 +15,4 @@ def divide(dividend: int, divisor: int) -> int:
         result += tr >> 1
 
     result = result * sign
-    return min((2 ** 31 - 1), max(-2 ** 31, result))
+    return min((2 ** 31 - 1), max(-(2 ** 31), result))

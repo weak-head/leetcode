@@ -4,7 +4,7 @@ import heapq
 
 
 def find_kth_1(m, n, k):
-    """"
+    """ "
     Brute force.
     Time: O(n * m * log(n * m))
     Space: O(n * m)

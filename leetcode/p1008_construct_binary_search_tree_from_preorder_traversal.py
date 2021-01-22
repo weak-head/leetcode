@@ -1,10 +1,12 @@
 from typing import List
 
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
+
 
 # O(n * log n)
 def bstFromPreorder2(preorder: List[int]) -> TreeNode:
@@ -12,6 +14,7 @@ def bstFromPreorder2(preorder: List[int]) -> TreeNode:
     for x in range(1, len(preorder)):
         insert(root, preorder[x])
     return root
+
 
 def insert(node: TreeNode, x: int) -> TreeNode:
     if node is None:
@@ -21,6 +24,7 @@ def insert(node: TreeNode, x: int) -> TreeNode:
     else:
         node.right = insert(node.right, x)
     return node
+
 
 # O(n)
 def bstFromPreorder(preorder: List[int]) -> TreeNode:
