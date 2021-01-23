@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0616_add_bold_tag_in_string import addBoldTag
+from leetcode.p0616_add_bold_tag_in_string import addBoldTag1, addBoldTag2
 
 
 @pytest.mark.parametrize(
@@ -10,4 +10,5 @@ from leetcode.p0616_add_bold_tag_in_string import addBoldTag
     ),
 )
 def test_solve(a, expectation):
-    assert addBoldTag(a[0], a[1]) == expectation
+    assert addBoldTag1(a[0], a[1]) == expectation
+    assert addBoldTag2(a[0], a[1]) == expectation
