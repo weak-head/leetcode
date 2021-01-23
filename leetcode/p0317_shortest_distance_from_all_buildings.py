@@ -4,13 +4,18 @@ from collections import defaultdict, deque
 
 def shortestDistance(grid: List[List[int]]) -> int:
     """
-    pass
+    BFS from each building, one by one, tracking land to each land
+
+    Time: O(n * l)
+    Space: O(n * l)
+        n - number of buildings
+        l - number of land cells
     """
     LAND, BUILDING = 0, 1
 
-    def dfs(building, land):
+    def bfs(building, land):
         """
-        Run DFS from cell that is 'building', to
+        Run BFS from the cell that is 'building', to
         track distance to all pieces of reachable land.
         """
 
@@ -40,14 +45,15 @@ def shortestDistance(grid: List[List[int]]) -> int:
 
     # Map of buildings and land
     buildings = []
-    land = defaultdict(list)
+    land = defaultdict(list)  # cell: [distance]
 
-    # Track distance to each reachable cell of land
+    # Track distance to each reachable cell of the land
+    # from each building
     for row in range(len(grid)):
         for col in range(len(grid[0])):
             if grid[row][col] == BUILDING:
                 buildings.append((row, col))
-                dfs((row, col), land)
+                bfs((row, col), land)
 
     # Get the shortest distance
     shortest = float("inf")
