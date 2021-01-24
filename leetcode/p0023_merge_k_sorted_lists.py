@@ -9,37 +9,42 @@ class ListNode:
 
 
 def mergeKLists(lists: List[ListNode]) -> ListNode:
-    """Divide And Conquer"""
-    if lists == []:
+    """
+    Divide And Conquer
+
+    Time: O(n * log(k))
+        n - total number of nodes
+        k - total number of linked lists
+
+    """
+    if not lists:
         return None
 
-    lists_len = len(lists)
-    while lists_len > 1:
+    def merge_two(l1: ListNode, l2: ListNode) -> ListNode:
+        head = node = ListNode(None)
+
+        while l1 and l2:
+            if l1.val < l2.val:
+                node.next = l1
+                l1 = l1.next
+            else:
+                node.next = l2
+                l2 = l2.next
+            node = node.next
+
+        node.next = l1 if l1 else l2
+        return head.next
+
+    n = len(lists)
+    while n > 1:
         res = []
-        for list_ix in range(0, lists_len, 2):
-            l1 = lists[list_ix]
-            l2 = lists[list_ix + 1] if (list_ix + 1) < lists_len else None
+        for i in range(0, n, 2):
+            l1 = lists[i]
+            l2 = lists[i + 1] if i + 1 < n else None
             res.append(merge_two(l1, l2))
-        lists = res
-        lists_len = len(lists)
+        lists, n = res, len(res)
 
     return lists[0]
-
-
-def merge_two(l1: ListNode, l2: ListNode) -> ListNode:
-    head = node = ListNode(None)
-
-    while l1 is not None and l2 is not None:
-        if l1.val < l2.val:
-            node.next = l1
-            l1 = l1.next
-        else:
-            node.next = l2
-            l2 = l2.next
-        node = node.next
-
-    node.next = l1 if l1 is not None else l2
-    return head.next
 
 
 # -----------------------------------------------
