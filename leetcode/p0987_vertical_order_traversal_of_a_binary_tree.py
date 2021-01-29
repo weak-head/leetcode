@@ -1,4 +1,5 @@
 from typing import List
+from collections import defaultdict, deque
 
 
 class TreeNode:
@@ -9,26 +10,31 @@ class TreeNode:
 
 
 def verticalTraversal(root: TreeNode) -> List[List[int]]:
-    od = {}
-    traverse(root, 0, 0, od)
+    """
+    BFS
 
-    res = []
-    for _, v in sorted(od.items()):
-        sv = sorted(v)
-        val = list(map(lambda k: k[1], sv))
-        res.append(val)
+    Time: O(n * log(n / k))
+    Space: O(n)
+        n - number of nodes in the tree
+        k - width of the tree
 
-    return res
+    """
+    m = defaultdict(list)
+    q = deque([(root, 0, 0)])  # val, row, col
+    l, r = 0, 0
 
+    while q:
+        node, row, col = q.popleft()
+        l, r = min(col, l), max(col, r)
 
-def traverse(node, ix, iy, od):
-    if node is None:
-        return
+        m[col].append((row, node.val))
+        if node.left:
+            q.append((node.left, row + 1, col - 1))
+        if node.right:
+            q.append((node.right, row + 1, col + 1))
 
-    traverse(node.left, ix - 1, iy + 1, od)
+    result = []
+    for col in range(l, r + 1):
+        result.append([v for _, v in sorted(m[col])])
 
-    if ix not in od:
-        od[ix] = []
-    od[ix].append((iy, node.val))
-
-    traverse(node.right, ix + 1, iy + 1, od)
+    return result
