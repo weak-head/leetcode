@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0277_find_the_celebrity import findCelebrity
+from leetcode.p0277_find_the_celebrity import findCelebrity1, findCelebrity2
 
 
 @pytest.mark.parametrize(
@@ -11,7 +11,8 @@ from leetcode.p0277_find_the_celebrity import findCelebrity
     ),
 )
 def test_solve(a, expectation):
-    assert findCelebrity(a[0], get_knows(a[1])) == expectation
+    assert findCelebrity1(a[0], get_knows(a[1])) == expectation
+    assert findCelebrity2(a[0], get_knows(a[1])) == expectation
 
 
 def get_knows(arr):

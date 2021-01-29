@@ -1,7 +1,7 @@
 from functools import lru_cache
 
 
-def findCelebrity(n: int, knows) -> int:
+def findCelebrity1(n: int, knows) -> int:
     """
     Time: O(n)
     Space: O(n)
@@ -34,9 +34,33 @@ def findCelebrity(n: int, knows) -> int:
             if celebrity == other:
                 continue
 
-            #
             if not cached_knows(other, celebrity) or cached_knows(celebrity, other):
                 return -1
         return celebrity
 
     return -1
+
+
+def findCelebrity2(n: int, knows) -> int:
+    """
+    Similar to the previous approach, but less overhead
+
+    Time: O(n)
+    Space: O(1)
+    """
+    x = 0
+
+    for i in range(n):
+        if knows(x, i):
+            x = i
+
+    # check only [0 -> x)
+    # no need to check (x -> n]
+    if any(knows(x, i) for i in range(x)):
+        return -1
+
+    # check [0 -> n]
+    if any(not knows(i, x) for i in range(n)):
+        return -1
+
+    return x
