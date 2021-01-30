@@ -26,3 +26,11 @@ test:
 coverage: test
 	@coverage html
 	@coverage report
+
+.PHONY: git-add
+git-add:
+	@git add .
+	@pre-commit
+
+.PHONY: add
+add: git-add test
