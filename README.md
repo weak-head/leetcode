@@ -3,6 +3,7 @@
 [![Build Status][travis-img]][travis-url]
 [![codecov][codecov-img]][codecov-url]
 [![Codacy Coverage][codacy-cov-img]][codacy-cov-url]
+[![Gitpod][gitpod-img]][gitpod-url]
 [![Codacy Code Quality][codacy-qlt-img]][codacy-qlt-url]
 [![flake8][flake8-img]][flake8-url]
 [![CodeQL][codeql-img]][codeql-url]
@@ -36,6 +37,12 @@
 
 [black-img]: https://img.shields.io/badge/code%20style-black-000000.svg
 [black-url]: https://github.com/psf/black
+
+[gitpod-img]: https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod
+[gitpod-url]: https://gitpod.io/#https://github.com/weak-head/leetcode
+
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/weak-head/leetcode/)
 
 ## Building and testing
 
@@ -76,12 +83,6 @@ make regenerate
 # Re-generate and verify links
 make verify
 ```
-
-## Try it
-
-Try the `leetcode` repo in a free online workspace using Gitpod:
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/weak-head/leetcode/)
 
 ## List of Problems
 |  #   |                                                                       Title                                                                       |                                     Solution                                     |                                     Test cases                                     |
