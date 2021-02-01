@@ -1,7 +1,3 @@
 tasks:
-  - init: 'curl https://pyenv.run | bash \
-          && pyenv install 3.9.0 \
-          && pyenv virtualenv 3.9.0 leetcode \
-          && pyenv local leetcode \
-          && pip install pipenv \
-          && pipenv install --devmake'
+  - init: 'pyenv install 3.9.0 && pipenv install --dev'
+    command: pipenv shell
