@@ -1,10 +1,10 @@
 import pytest
-from leetcode.p0010_regular_expression_matching import isMatch, isMatch2
+from leetcode.p0010_regular_expression_matching import isMatch_dp, isMatch_bt_memo
 
 
 @pytest.mark.timeout(10)
 @pytest.mark.parametrize(
-    ("string", "pattern", "match", "both"),
+    ("string", "pattern", "match", "isFast"),
     (
         ("aaa", "aaa", True, True),
         ("aaa", "a*", True, True),
@@ -28,7 +28,6 @@ from leetcode.p0010_regular_expression_matching import isMatch, isMatch2
         ("aaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*c", False, False),
     ),
 )
-def test_isMatch(string, pattern, match, both):
-    if both:
-        assert isMatch(string, pattern) == match
-    assert isMatch2(string, pattern) == match
+def test_isMatch(string, pattern, match, isFast):
+    assert isMatch_dp(string, pattern) == match
+    assert isMatch_bt_memo(string, pattern) == match
