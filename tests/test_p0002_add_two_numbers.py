@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0002_add_two_numbers import Solution, from_array, to_array
+from leetcode.p0002_add_two_numbers import addTwoNumbers, ListNode
 
 
 @pytest.mark.parametrize(
@@ -14,12 +14,26 @@ from leetcode.p0002_add_two_numbers import Solution, from_array, to_array
     ),
 )
 def test_addTwoNumbers(first, second, expectation):
-    s = Solution()
-
     l1 = from_array(first) if first else None
     l2 = from_array(second) if second else None
 
-    res = s.addTwoNumbers(l1, l2)
+    res = addTwoNumbers(l1, l2)
     res = to_array(res) if res else None
 
     assert res == expectation
+
+
+def from_array(array):
+    head = node = ListNode(None)
+    for el in array:
+        node.next = ListNode(el)
+        node = node.next
+    return head.next
+
+
+def to_array(node):
+    res = []
+    while node is not None:
+        res.append(node.val)
+        node = node.next
+    return res

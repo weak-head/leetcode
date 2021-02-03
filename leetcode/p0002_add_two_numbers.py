@@ -1,45 +1,30 @@
-from typing import List
-
-
 class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
 
 
-class Solution:
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        return self._add_two_numbers(l1, l2, 0)
+def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
+    """
+    Time: O(max(n, m))
+    Space: O(max(n, m))
+        n - length of the first list
+        m - length of the second list
+    """
 
-    def _add_two_numbers(self, l1: ListNode, l2: ListNode, carryover: int) -> ListNode:
-        if not l1 and not l2:
-            return ListNode(carryover) if carryover else None
+    c = 0
+    head = cur = ListNode(None)
+    while l1 or l2:
+        v1 = l1.val if l1 else 0
+        v2 = l2.val if l2 else 0
+        v = (v1 + v2 + c) % 10
+        c = (v1 + v2 + c) // 10
+        cur.next = ListNode(v)
+        cur = cur.next
+        l1 = l1.next if l1 else l1
+        l2 = l2.next if l2 else l2
 
-        val = carryover
-        val += l1.val if l1 else 0
-        val += l2.val if l2 else 0
+    if c:
+        cur.next = ListNode(c)
 
-        n_carryover, n_val = divmod(val, 10)
-        n_l1 = l1.next if l1 else None
-        n_l2 = l2.next if l2 else None
-
-        node = ListNode(n_val)
-        node.next = self._add_two_numbers(n_l1, n_l2, n_carryover)
-
-        return node
-
-
-def from_array(array: List[int]) -> ListNode:
-    head = node = ListNode(None)
-    for el in array:
-        node.next = ListNode(el)
-        node = node.next
     return head.next
-
-
-def to_array(node: ListNode) -> List[int]:
-    res = []
-    while node is not None:
-        res.append(node.val)
-        node = node.next
-    return res
