@@ -1,7 +1,6 @@
 import pytest
 from leetcode.p0003_longest_substring_without_repeating_characters import (
     lengthOfLongestSubstring,
-    lengthOfLongestSubstring2,
 )
 
 
@@ -20,4 +19,3 @@ from leetcode.p0003_longest_substring_without_repeating_characters import (
 )
 def test_lengthOfSubstring(s, expectation):
     assert lengthOfLongestSubstring(s) == expectation
-    assert lengthOfLongestSubstring2(s) == expectation
