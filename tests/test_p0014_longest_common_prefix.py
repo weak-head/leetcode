@@ -1,7 +1,6 @@
 import pytest
 from leetcode.p0014_longest_common_prefix import (
     longestCommonPrefix,
-    longestCommonPrefix2,
 )
 
 
@@ -18,4 +17,3 @@ from leetcode.p0014_longest_common_prefix import (
 )
 def test_lcp(items, prefix):
     assert longestCommonPrefix(items) == prefix
-    assert longestCommonPrefix2(items) == prefix

@@ -1,29 +1,23 @@
 from typing import List
 
 
-def longestCommonPrefix2(strs: List[str]) -> str:
-    if len(strs) == 0:
-        return ""
-    common_prefix = list(strs[0])
-    for s in strs:
-        for s_ix in range(len(common_prefix) - 1, -1, -1):
-            if s_ix >= len(s) or common_prefix[s_ix] != s[s_ix]:
-                d_ix = len(common_prefix) - 1
-                while d_ix >= s_ix:
-                    del common_prefix[d_ix]
-                    d_ix = d_ix - 1
-        if common_prefix == []:
-            return ""
-    return "".join(common_prefix)
-
-
 def longestCommonPrefix(strs: List[str]) -> str:
-    if len(strs) == 0:
+    """
+    Time: O(n * l)
+    Space: O(1)
+        n - number of strings in array
+        l - min length of the string in array
+    """
+    if not strs:
         return ""
-    for ix, current_char in enumerate(strs[0]):
+
+    base = strs[0]
+    for i, c in enumerate(base):
         for s in strs:
-            if len(s) <= ix:
+            if len(s) <= i:
                 return s
-            if s[ix] != current_char:
-                return strs[0][0:ix]
-    return strs[0]
+
+            if s[i] != c:
+                return base[:i]
+
+    return base
