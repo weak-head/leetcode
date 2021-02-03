@@ -1,57 +1,31 @@
 from typing import List
 
 
-def fourSum2(nums: List[int], target: int) -> List[List[int]]:
-    """O(n^3)"""
-    nums.sort()
-    result = []
-    nums_len = len(nums)
-    a = 0
-    while a < nums_len - 2:
-        b = a + 1
-        while b < nums_len - 1:
-            l, r = b + 1, nums_len - 1
-            ab_sum = nums[a] + nums[b]
-            while l < r:
-                if (nums[l] * 2 > (target - ab_sum)) or (
-                    nums[r] * 2 < (target - ab_sum)
-                ):
-                    break
-
-                lr_sum = nums[l] + nums[r]
-
-                # exact match
-                if ab_sum + lr_sum == target:
-                    result.append([nums[a], nums[b], nums[l], nums[r]])
-
-                # we need to increase l_r sum
-                if lr_sum < (target - ab_sum):
-                    l = l + 1
-                    while nums[l - 1] == nums[l] and l < r:
-                        l = l + 1
-                # we need to reduce l_r sum
-                else:
-                    r = r - 1
-                    while nums[r + 1] == nums[r] and l < r:
-                        r = r - 1
-            b = b + 1
-            while nums[b] == nums[b - 1] and b < nums_len - 1:
-                b = b + 1
-
-        a = a + 1
-        while nums[a] == nums[a - 1] and a < nums_len - 2:
-            a = a + 1
-
-    return result
-
-
 def fourSum(nums: List[int], target: int) -> List[List[int]]:
-    """Generalization to N-sum"""
+    """
+    Time: O(n^3)
+    Space: O(n^3)
+        n - number of elements in array
+    """
+    return nSum(nums, target, 4)
+
+
+def nSum(nums: List[int], target: int, n: int) -> List[List[int]]:
+    """
+    Generalization of n-sum
+
+    Time: O(k ^ (n - 1))
+    Space: O(k ^ (n - 1))
+        k - number of elements in the array
+        n - number of elements to sum to get the target
+    """
     nums.sort()
     result = []
 
-    # Reduce sum to two-sum
     def get_sum(l, r, n, target, current_sum):
+        """
+        Reduce the n-sum problem to 2-sum problem
+        """
         # any combination of the elements will not yield the target
         if (r - l + 1 < n) or (nums[l] * n > target) or (nums[r] * n < target):
             return
@@ -79,5 +53,5 @@ def fourSum(nums: List[int], target: int) -> List[List[int]]:
                         ix + 1, r, n - 1, target - nums[ix], current_sum + [nums[ix]]
                     )
 
-    get_sum(0, len(nums) - 1, 4, target, [])
+    get_sum(0, len(nums) - 1, n, target, [])
     return result

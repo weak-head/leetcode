@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0018_4sum import fourSum, fourSum2
+from leetcode.p0018_4sum import fourSum
 
 
 @pytest.mark.parametrize(
@@ -18,13 +18,7 @@ from leetcode.p0018_4sum import fourSum, fourSum2
 )
 def test_fourSum(nums, target, expectation):
     res = fourSum(nums, target)
-    res2 = fourSum2(nums, target)
-    assert len(res) == len(expectation)
 
-    res = [tuple(sorted(k)) for k in res]
-    res2 = [tuple(sorted(k)) for k in res2]
-    exp = [tuple(sorted(k)) for k in expectation]
-
-    for e in exp:
-        assert e in res
-        assert e in res2
+    res = sorted([tuple(sorted(k)) for k in res])
+    exp = sorted([tuple(sorted(k)) for k in expectation])
+    assert res == exp
