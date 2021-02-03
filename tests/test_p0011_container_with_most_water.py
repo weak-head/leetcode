@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0011_container_with_most_water import maxArea, maxArea2, maxArea3
+from leetcode.p0011_container_with_most_water import maxArea
 
 
 @pytest.mark.parametrize(
@@ -17,5 +17,3 @@ from leetcode.p0011_container_with_most_water import maxArea, maxArea2, maxArea3
 )
 def test_maxArea(container, area):
     assert maxArea(container) == area
-    assert maxArea2(container) == area
-    assert maxArea3(container) == area
