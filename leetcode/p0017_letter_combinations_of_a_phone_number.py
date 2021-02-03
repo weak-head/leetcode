@@ -1,70 +1,29 @@
 from typing import List
 
-num_map = [
-    [],
-    [],
-    ["a", "b", "c"],
-    ["d", "e", "f"],
-    ["g", "h", "i"],
-    ["j", "k", "l"],
-    ["m", "n", "o"],
-    ["p", "q", "r", "s"],
-    ["t", "u", "v"],
-    ["w", "x", "y", "z"],
-]
-
-
-def letterCombinations2(digits: str) -> List[str]:
-    result = []
-    for digit in reversed(digits):
-        if len(result) == 0:
-            result = list(num_map[int(digit)])
-        else:
-            result = [
-                char + combination
-                for char in num_map[int(digit)]
-                for combination in result
-            ]
-    return result
-
-
-# backtracking
-
 
 def letterCombinations(digits: str) -> List[str]:
+    """
+    Time: O(3^m * 4^n)
+    Space: O(3^m * 4^n)
+        m - number of digits that maps to 3 letters
+        n - number of digits that maps to 4 letters
+    """
     if not digits:
         return []
 
-    result = []
+    m = {
+        "2": "abc",
+        "3": "edf",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz",
+    }
 
-    def backtrack(combination: str, next_digits: str):
-        if len(next_digits) == 0:
-            result.append(combination)
-            return
-        for char in num_map[int(next_digits[0])]:
-            backtrack(combination + char, next_digits[1:])
+    rs = list(m[digits[-1]])
+    for d in reversed(digits[:-1]):
+        rs = [v + r for v in m[d] for r in rs]
 
-    backtrack("", digits)
-    return result
-
-
-def letterCombinations3(digits: str) -> List[str]:
-    if not digits:
-        return []
-
-    num_map = [None, None, "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
-
-    def backtrack(nums):
-        if len(nums) == 1:
-            return num_map[int(nums[0])]
-
-        tails = backtrack(nums[1:])
-
-        result = []
-        for char in num_map[int(nums[0])]:
-            for tail in tails:
-                result.append(char + tail)
-
-        return result
-
-    return backtrack(digits)
+    return rs

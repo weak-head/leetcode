@@ -1,8 +1,6 @@
 import pytest
 from leetcode.p0017_letter_combinations_of_a_phone_number import (
     letterCombinations,
-    letterCombinations2,
-    letterCombinations3,
 )
 
 
@@ -15,6 +13,4 @@ from leetcode.p0017_letter_combinations_of_a_phone_number import (
     ),
 )
 def test_letterCombinations(number, combinations):
-    assert letterCombinations(number) == combinations
-    assert letterCombinations2(number) == combinations
-    assert letterCombinations3(number) == combinations
+    assert sorted(letterCombinations(number)) == sorted(combinations)
