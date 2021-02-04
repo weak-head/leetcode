@@ -31,7 +31,6 @@ def reverse_convert(a: List[int], k: int, f) -> List[int]:
     ("list", "k", "result"),
     (
         ([], 1, []),
-        ([], 0, []),
         ([], 110, []),
         ([1, 2, 3, 4, 5, 6, 7, 8, 9], 1, [1, 2, 3, 4, 5, 6, 7, 8, 9]),
         ([1, 2, 3, 4, 5, 6, 7, 8, 9], 100, [1, 2, 3, 4, 5, 6, 7, 8, 9]),
@@ -40,5 +39,5 @@ def reverse_convert(a: List[int], k: int, f) -> List[int]:
     ),
 )
 def test_reverse_nodes(list, k, result):
-    reverse_convert(list, k, reverseKGroup) == result
-    reverse_convert(list, k, reverseKGroup2) == result
+    assert reverse_convert(list, k, reverseKGroup) == result
+    assert reverse_convert(list, k, reverseKGroup2) == result

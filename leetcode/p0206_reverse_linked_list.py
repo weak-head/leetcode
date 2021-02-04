@@ -5,18 +5,20 @@ class ListNode:
 
 
 def reverseList(head: ListNode) -> ListNode:
-    def rev(node):
-        if not node:
-            return None, None
+    """
+    Time: O(n)
+    Space: O(1)
+        n - length of the list
 
-        first, last = rev(node.next)
-        node.next = None
+    Follow up: p0025 - Reverse in K-Group
+    """
+    if not head or not head.next:
+        return head
 
-        if last:
-            last.next = node
-            return first, node
-        else:
-            return node, node
-
-    first, _ = rev(head)
-    return first
+    prev, cur = None, head
+    while cur:
+        nxt = cur.next
+        cur.next = prev
+        prev = cur
+        cur = nxt
+    return prev
