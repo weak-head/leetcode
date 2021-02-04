@@ -1,9 +1,6 @@
 import pytest
 
-from leetcode.p0030_substring_with_concatenation_of_all_words import (
-    findSubstring,
-    findSubstring2,
-)
+from leetcode.p0030_substring_with_concatenation_of_all_words import findSubstring
 
 
 @pytest.mark.parametrize(
@@ -11,6 +8,7 @@ from leetcode.p0030_substring_with_concatenation_of_all_words import (
     (
         ("", ["foo", "bar"], []),
         ("foobarfoo", [], []),
+        ("foobar", ["foo", "bar", "foo"], []),
         ("barfoothefoobarman", ["foo", "bar"], [0, 9]),
         ("wordgoodgoodgoodbestword", ["word", "good", "best", "word"], []),
         ("barfoofoobarthefoobarman", ["bar", "foo", "the"], [6, 9, 12]),
@@ -579,4 +577,3 @@ from leetcode.p0030_substring_with_concatenation_of_all_words import (
 )
 def test_findSubstring(s, words, expectation):
     assert findSubstring(s, words) == expectation
-    assert findSubstring2(s, words) == expectation
