@@ -18,12 +18,18 @@ regenerate:
 install:
 	@python3 setup.py install
 
-.PHONY: test
-test:
+.PHONY: test-all
+test-all:
 	@coverage run -m pytest
 
+.PHONY: test
+test:
+	@git status --porcelain \
+		| awk 'match($$2, "tests/*"){print $$2}' \
+		| xargs coverage run -m pytest -vv
+
 .PHONY: coverage
-coverage: test
+coverage: test-all
 	@coverage html
 	@coverage report
 
