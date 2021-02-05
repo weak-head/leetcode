@@ -31,6 +31,7 @@ test:
 .PHONY: coverage
 coverage: test-all
 	@coverage html
+	@coverage xml
 	@coverage report
 
 .PHONY: git-add

@@ -5,15 +5,13 @@ python: 3.9
 
 before_install:
   - sudo apt update
-  - sudo apt install python3-pip python-virtualenv
+  - sudo apt install make python3-pip python-virtualenv
 
 install:
   - pip3 install codecov pytest-timeout
 
 script:
-  - coverage run -m pytest
-  - coverage xml
-  - coverage report
+  - make coverage
 
 after_success:
   - codecov

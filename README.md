@@ -44,7 +44,7 @@
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/weak-head/leetcode/)
 
-## Building and testing
+## Environment setup
 
 ```bash
 # Install python
@@ -60,28 +60,30 @@ pipenv install --dev
 
 # Optional, enable pre-commit hook
 pre-commit install
-
-# Run test cases and generate the code coverage report
-make coverage
 ```
 
-### Create skeleton for a new problem and update the readme
+## Typical flow
 
 ```bash
 # Create a new template for the problem
 # Example:
 #   make new 1 https://leetcode.com/problems/two-sum/
 make new <id> <url>
-```
 
-### Regenerate markdown table and verify links
+# Stage changes and run test cases for this problem
+# This will execute:
+#   - git add .
+#   - pre-commit
+#   - pytest
+make add
 
-```bash
-# Re-generate markdown, no verification
-make regenerate
-
-# Re-generate and verify links
-make verify
+# Commit changes
+# This will:
+#   - stage changes
+#   - run test cases
+#   - generate commit message
+#   - commit changes
+make commit
 ```
 
 ## List of Problems
