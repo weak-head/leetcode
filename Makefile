@@ -41,3 +41,15 @@ git-add:
 
 .PHONY: add
 add: git-add test
+
+.PHONY: commit
+commit: add
+	@git status --porcelain \
+		| awk 'match($$2, "leetcode/*"){print $$2}' \
+		| awk '{split($$0, a, "/"); print a[2]}' \
+		| sed 's/.py$$//' \
+		| sed 's/^p\([0-9]*\)_/\1 - /' \
+		| sed 's/_/ /' > .GIT_COMMIT_MSG
+
+	@git commit -F .GIT_COMMIT_MSG
+	@rm .GIT_COMMIT_MSG
