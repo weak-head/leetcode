@@ -1,7 +1,8 @@
 import pytest
 from leetcode.p0032_longest_valid_parentheses import (
-    longestValidParentheses,
-    longestValidParentheses2,
+    longestValidParentheses_stack,
+    longestValidParentheses_dp,
+    longestValidParentheses_two_counters,
 )
 
 
@@ -22,5 +23,6 @@ from leetcode.p0032_longest_valid_parentheses import (
     ),
 )
 def test_longestValidPar(s, length):
-    assert longestValidParentheses(s) == length
-    assert longestValidParentheses2(s) == length
+    assert longestValidParentheses_stack(s) == length
+    assert longestValidParentheses_dp(s) == length
+    assert longestValidParentheses_two_counters(s) == length
