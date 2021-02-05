@@ -1,8 +1,6 @@
 import pytest
 from leetcode.p0039_combination_sum import (
     combinationSum,
-    combinationSum2,
-    combinationSum3,
 )
 
 test_cases = (
@@ -11,19 +9,10 @@ test_cases = (
 )
 
 
+@pytest.mark.timeout(1)
 @pytest.mark.parametrize(("arr", "target", "expectation"), test_cases)
 def test_combination(arr, target, expectation):
     verify(arr, target, expectation, combinationSum)
-
-
-@pytest.mark.parametrize(("arr", "target", "expectation"), test_cases)
-def test_combination2(arr, target, expectation):
-    verify(arr, target, expectation, combinationSum2)
-
-
-@pytest.mark.parametrize(("arr", "target", "expectation"), test_cases)
-def test_combination3(arr, target, expectation):
-    verify(arr, target, expectation, combinationSum3)
 
 
 def verify(arr, target, expectation, func):
