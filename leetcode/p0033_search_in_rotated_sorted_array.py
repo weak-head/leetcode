@@ -2,51 +2,40 @@ from typing import List
 
 
 def search(nums: List[int], target: int) -> int:
-    if nums == []:
-        return -1
+    """
+    Modified binary search.
 
-    nums_len = len(nums)
-    lix, rix = 0, nums_len - 1
-    while (
-        lix <= rix and (lix >= 0 and lix < nums_len) and (rix >= 0 and rix < nums_len)
-    ):
-        mix = (lix + rix) >> 1
+    With each iteration we can determine
+    if left or right side of the array is rotated.
 
-        # found match
-        if target == nums[lix]:
-            return lix
+        - [ 7 8 9 1 |2| 3 4 5 6 ]   (right is not rotated)
+        - [ 3 4 5 6 |7| 8 9 1 2 ]   (left is not rotated)
 
-        if target == nums[mix]:
-            return mix
+    Then we need to check if |v| is between start and end
+    of the not rotated half and based on this make a decision
+    of how to adjust start/end of the search range.
 
-        # the pivot is between lix and mix
-        if nums[mix] < nums[lix]:
+    Time: O(log n)
+    Space: O(1)
+    """
+    start, end = 0, len(nums) - 1
+    while start <= end:
+        mid = (start + end) >> 1
 
-            # target should be between lix and mix
-            if target > nums[lix]:
-                rix = mix - 1
+        if nums[mid] == target:
+            return mid
 
-            # target should be between mix and rix
-            elif target > nums[mix]:
-                lix = mix + 1
-
-            # target should be between lix and mix
-            elif target < nums[mix]:
-                rix = mix - 1
-
-        # nums[mix] > nums[lix]:
+        # left side is not rotated
+        if nums[mid] >= nums[start]:
+            if target >= nums[start] and target < nums[mid]:
+                end = mid - 1
+            else:
+                start = mid + 1
+        # right side is not rotated
         else:
-
-            # target should be between mix and rix
-            if target > nums[mix]:
-                lix = mix + 1
-
-            # target should be between lix and mix
-            elif target > nums[lix]:
-                rix = mix - 1
-
-            # target should be between mix and rix
-            elif target < nums[lix]:
-                lix = mix + 1
+            if target <= nums[end] and target > nums[mid]:
+                start = mid + 1
+            else:
+                end = mid - 1
 
     return -1

@@ -39,6 +39,7 @@ def test_search(nums, target, index):
         [1, 2, 3, 4, 5, 6, 7],
         [10, 20, 30, 40, 50],
         [99, 100, 101, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+        list(range(-1000, 1000, 2)),
     ),
 )
 def test_search_all(nums):
