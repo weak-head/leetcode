@@ -50,7 +50,7 @@ commit: add
 		| awk '{split($$0, a, "/"); print a[2]}' \
 		| sed 's/.py$$//' \
 		| sed 's/^p\([0-9]*\)_/\1 - /' \
-		| sed 's/_/ /' > .GIT_COMMIT_MSG
+		| sed 's/_/ /g' > .GIT_COMMIT_MSG
 
 	@git commit -F .GIT_COMMIT_MSG
 	@rm .GIT_COMMIT_MSG
