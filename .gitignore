@@ -1,5 +1,6 @@
 .vscode
 .python-version
+.GIT_COMMIT_MSG
 
 *.egg
 *.egg-info
