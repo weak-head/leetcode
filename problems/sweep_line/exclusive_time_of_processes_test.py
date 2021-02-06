@@ -1,5 +1,5 @@
 import pytest
-from problems.x_exclusive_time_of_processes import exclusive_time
+from problems.sweep_line.exclusive_time_of_processes import exclusive_time
 
 
 @pytest.mark.parametrize(
