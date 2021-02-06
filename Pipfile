@@ -9,6 +9,10 @@ pytest = "*"
 pytest-timeout = "*"
 coverage = "*"
 pre-commit = "*"
+pytest-sugar = "*"
+pytest-icdiff = "*"
+pytest-freezegun = "*"
+pytest-socket = "*"
 
 [packages]
 requests = "*"

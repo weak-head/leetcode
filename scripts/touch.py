@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Creates the template for a new problem"""
+"""
+Creates problem and test templates.
+Refreshes problem list in README.md.
+"""
 
 import os
 import requests
@@ -9,7 +12,12 @@ from termcolor import colored
 from genmd import refresh_markdown
 
 
-VERIFY = True
+class conf:
+    problem_template_file = "./scripts/PROBLEM_TEMPLATE"
+    problem_test_template_file = "./scripts/PROBLEM_TEST_TEMPLATE"
+    verify_url = True
+    verify_path = True
+    valid_domains = {"leetcode.com"}
 
 
 def extract_title(url):
@@ -30,20 +38,26 @@ def file_name(id, title, kind="src"):
 
 
 def verify_url(url):
-    if VERIFY:
+    if conf.verify_url:
         try:
-            # TODO: verify this url belongs to leetcode domain
+            domain = urlparse(url).netloc
+            if domain not in conf.valid_domains:
+                raise Exception("Invalid domain")
+
             r = requests.get(url, timeout=3)
             if r.status_code != 200:
-                raise Exception("bad url")
-        except Exception:
-            print(colored("Broken link: {link}".format(link=url), "red"))
+                raise Exception("Bad url")
+
+        except Exception as ex:
+            print(
+                colored("{reason}: {link}".format(link=url, reason=ex.args[0]), "red")
+            )
             return False
     return True
 
 
 def verify_path(file_path):
-    if VERIFY:
+    if conf.verify_path:
         if os.path.isfile(file_path):
             print(colored("Already exists: {file}".format(file=file_path), "red"))
             return False
@@ -51,40 +65,18 @@ def verify_path(file_path):
 
 
 def src_template(id, title):
-    return ""
+    with open(conf.problem_template_file, mode="r") as f:
+        template = f.read()
+        return template
 
 
 def tst_template(id, title):
-    return (
-        """import pytest
-from leetcode.{src} import {method}
-
-
-@pytest.mark.parametrize(('a', 'expectation'), (
-    (
-        (
-            # a1
-        ),
-        (
-            # expectation1
+    with open(conf.problem_test_template_file, mode="r") as f:
+        template = f.read()
+        return template.format(
+            src=file_name(id, title, "src")[:-3],  # without .py extension
+            method="solve",
         )
-    ),
-
-    (
-        (
-            # a2
-        ),
-        (
-            # expectation2
-        )
-    ),
-))
-def test_{method}(a, expectation):
-    assert {method}(a) == expectation
-"""
-    ).format(
-        src=file_name(id, title, "src")[:-3], method="solve"  # without .py extension
-    )
 
 
 def create_files(id, url):
@@ -121,10 +113,11 @@ if __name__ == "__main__":
     parser.add_argument("url")
     args = parser.parse_args()
 
-    VERIFY = not args.skip_verification
+    conf.verify_url = not args.skip_verification
+    conf.verify_path = not args.skip_verification
 
     try:
-        # we dont want to parse HTML and extract the id
+        # we don't want to parse HTML and extract the id
         # from the page, because it goes against
         # the leetcode usage policy
         id = int(args.id)
