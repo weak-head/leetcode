@@ -1,5 +1,9 @@
 import pytest
-from leetcode.p0041_first_missing_positive import firstMissingPositive
+from leetcode.p0041_first_missing_positive import (
+    firstMissingPositive,
+    firstMissingPositive2,
+    firstMissingPositive3,
+)
 
 
 @pytest.mark.parametrize(
@@ -14,4 +18,6 @@ from leetcode.p0041_first_missing_positive import firstMissingPositive
     ),
 )
 def test_firstMissing(a, expectation):
-    assert firstMissingPositive(a) == expectation
+    assert firstMissingPositive(list(a)) == expectation
+    assert firstMissingPositive2(list(a)) == expectation
+    assert firstMissingPositive3(list(a)) == expectation
