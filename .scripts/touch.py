@@ -13,11 +13,24 @@ from genmd import refresh_markdown
 
 
 class conf:
-    problem_template_file = "./scripts/PROBLEM_TEMPLATE"
-    problem_test_template_file = "./scripts/PROBLEM_TEST_TEMPLATE"
+    # -- Source location
+    src_folder = "leetcode"
+    tst_folder = "tests"
+
+    # -- Templates --
+    template_source_file = "./.scripts/TEMPLATE_SRC"
+    template_source_file_name = "p{id:0>4d}_{title}.py"
+    template_test_file = "./.scripts/TEMPLATE_TST"
+    template_test_file_name = "test_" + template_source_file_name
+
+    # -- Verification
+    valid_domains = {"leetcode.com"}
     verify_url = True
     verify_path = True
-    valid_domains = {"leetcode.com"}
+
+    # -- Editor --
+    editor = "code"
+    open_editor = True
 
 
 def extract_title(url):
@@ -29,10 +42,12 @@ def extract_title(url):
 
 
 def file_name(id, title, kind="src"):
-    """ Generates file name from problem id and title """
-    fn_template = "p{id:0>4d}_{title}.py"
+    """
+    Generates file name from problem id and title.
+    """
+    fn_template = conf.template_source_file_name
     if kind == "tst":
-        fn_template = "test_" + fn_template
+        fn_template = conf.template_test_file_name
 
     return fn_template.format(id=id, title=title.replace("-", "_"))
 
@@ -49,9 +64,7 @@ def verify_url(url):
                 raise Exception("Bad url")
 
         except Exception as ex:
-            print(
-                colored("{reason}: {link}".format(link=url, reason=ex.args[0]), "red")
-            )
+            print(colored(f"{ex.args[0]}: {url}", "red"))
             return False
     return True
 
@@ -65,13 +78,13 @@ def verify_path(file_path):
 
 
 def src_template(id, title):
-    with open(conf.problem_template_file, mode="r") as f:
+    with open(conf.template_source_file, mode="r") as f:
         template = f.read()
         return template
 
 
 def tst_template(id, title):
-    with open(conf.problem_test_template_file, mode="r") as f:
+    with open(conf.template_test_file, mode="r") as f:
         template = f.read()
         return template.format(
             src=file_name(id, title, "src")[:-3],  # without .py extension
@@ -79,27 +92,28 @@ def tst_template(id, title):
         )
 
 
-def create_files(id, url):
+def create_files(id: str, url: str):
     title = extract_title(url)
-    src = os.path.join("leetcode", file_name(id, title, "src"))
-    tst = os.path.join("tests", file_name(id, title, "tst"))
+    src = os.path.join(conf.src_folder, file_name(id, title, "src"))
+    tst = os.path.join(conf.tst_folder, file_name(id, title, "tst"))
 
     valid = verify_url(url)
     valid = verify_path(src) and valid
     valid = verify_path(tst) and valid
 
     if not valid:
-        return False
+        return None
 
+    print(colored("Created:", "green"))
     with open(src, "w") as f:
         f.write(src_template(id, title))
-        print(colored("Created {}".format(src), "green"))
+        print(colored(f"  {src}", "green"))
 
     with open(tst, "w") as f:
         f.write(tst_template(id, title))
-        print(colored("Created {}".format(tst), "green"))
+        print(colored(f"  {tst}", "green"))
 
-    return True
+    return src, tst
 
 
 if __name__ == "__main__":
@@ -123,8 +137,15 @@ if __name__ == "__main__":
         id = int(args.id)
         url = args.url
 
-        if create_files(id, url):
+        out = create_files(id, url)
+        if out:
             refresh_markdown("README.md", False, True)
-            print(colored("Updated README.md\n", "green"))
+            print(colored("\nUpdated:\n  README.md\n", "green"))
+
+            src, tst = out
+            if conf.open_editor:
+                os.system(f"{conf.editor} {src}")
+                os.system(f"{conf.editor} {tst}")
+
     except Exception as e:
         print(colored("\nfailed: {}\n".format(e), "red"))
