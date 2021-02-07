@@ -1,15 +1,19 @@
+# flake8: noqa: F403, F405
 import pytest
-from leetcode.{src} import (
-    {method},
-)
+from leetcode.{src} import *
 
-test_cases = [
-#   (args, expectation)
-    (None, None),
+solutions = [
+    {method},
 ]
 
+#   ([args], expectation),
+test_cases = [
+    ([arg1, arg2], True),
+]
+
+
 @pytest.mark.timeout(1)
-@pytest.mark.parametrize(('args', 'expectation'), test_cases)
-def test_{method}(args, expectation):
-    got = solve(args)
-    assert got == expectation
+@pytest.mark.parametrize(("args", "expectation"), test_cases)
+@pytest.mark.parametrize("solution", solutions)
+def test_solution(args, expectation, solution):
+    assert solution(*args) == expectation
