@@ -4,59 +4,56 @@ from typing import List
 def numDistinctIslands(grid: List[List[int]]) -> int:
     """
     For the same islands we get the same path.
-    O(r * c)
+
+    Time: O(r * c)
+    Space: O(r * c)
+        r - number of rows
+        c - number of cols
     """
+    moves = {"D": (1, 0), "L": (0, -1), "U": (-1, 0), "R": (0, 1)}
 
-    seen = set()
-    paths = set()
-
-    def dfs(path: [], r: int, c: int, d: int):
+    def walk(r, c, path, visited):
         """
-        DFS walk from top left corner of a two identical
-        islands would be the same
+        DFS walk from the top left corner
+        of the two identical islands would be the same
         """
-        if (
-            ((r, c) in seen)
-            or not (0 <= r < len(grid))
-            or not (0 <= c < len(grid[0]))
-            or not grid[r][c]
-        ):
-            return
+        visited.add((r, c))
 
-        seen.add((r, c))
+        for move, (rx, cx) in moves.items():
+            nr, nc = r + rx, c + cx
+            if (
+                0 <= nr < len(grid)
+                and 0 <= nc < len(grid[nr])
+                and (nr, nc) not in visited
+                and grid[nr][nc]
+            ):
+                path.append(move)
+                walk(nr, nc, path, visited)
 
-        # forward
-        path.append(d)
+                # We need to track cases like this:
+                #   110
+                #   011
+                #   000
+                #   111
+                #   010
+                #
+                # With backward movement we have:
+                #   R -> D -> R
+                #   R -> D -> B -> R
+                #
+                # Without tracking the backward movement
+                #   R -> D -> R
+                #   R -> D -> R
+                #
+                path.append("B")  # back
 
-        dfs(path, r + 1, c, 1)  # down
-        dfs(path, r - 1, c, 2)  # up
-        dfs(path, r, c + 1, 3)  # right
-        dfs(path, r, c - 1, 4)  # left
-
-        # We need to track cases like this:
-        #   110
-        #   011
-        #   000
-        #   111
-        #   010
-        #
-        # With backward movement we have:
-        #   o -> right -> down -> right
-        #   o -> right -> down -> back -> right
-        #
-        # Without tracking the backward movement
-        #   o -> right -> down -> right
-        #   o -> right -> down -> right
-        #
-
-        # back
-        path.append(5)
-
+    visited = set()  # cells
+    islands = set()
     for r in range(len(grid)):
         for c in range(len(grid[0])):
-            path = []
-            dfs(path, r, c, 0)
-            if path:
-                paths.add(tuple(path))
+            if grid[r][c] and (r, c) not in visited:
+                path = []
+                walk(r, c, path, visited)
+                islands.add("".join(path))
 
-    return len(paths)
+    return len(islands)
