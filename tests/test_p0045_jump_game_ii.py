@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0045_jump_game_ii import jump, jump2
+from leetcode.p0045_jump_game_ii import jump
 
 
 @pytest.mark.parametrize(
@@ -18,4 +18,3 @@ from leetcode.p0045_jump_game_ii import jump, jump2
 )
 def test_jump(input, res):
     assert jump(input) == res
-    assert jump2(input) == res
