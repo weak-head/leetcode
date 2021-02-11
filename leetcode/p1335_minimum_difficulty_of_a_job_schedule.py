@@ -52,9 +52,52 @@ def minDifficulty_dp(diffs: List[int], d: int) -> int:
     return min_diff(0, d)
 
 
-def minDifficulty_dp_stack(diffs: List[int], days: int) -> int:
+def minDifficulty_dp_space_saving(diffs: List[int], days: int) -> int:
     """
-    Dynamic programming, with monotonic stack
+    Dynamic programming, bottom up, with space saving
+    Since 'dp(.., day)' depends only on 'dp(.., day-1)'
+
+    Time: (n * n * d)
+    Space: (n)
+        n - number of jobs
+        d - number of days
+    """
+    ln = len(diffs)
+    if ln < days:
+        return -1
+
+    dp = [0] * ln  # day 'n'
+    dp2 = [float("inf")] * ln  # day 'n+1'
+
+    # day 0
+    for j in range(ln - 1, -1, -1):
+        if j == ln - 1:
+            dp[j] = diffs[j]
+        else:
+            dp[j] = max(diffs[j], dp[j + 1])
+
+    # day 1 -> d
+    for day in range(1, days):
+
+        # all possible endings of this day
+        for day_end in range(ln - day - 1, -1, -1):
+
+            # all possible difficulties of this day
+            #   dp  -> previous day
+            #   dp2 -> this day
+            day_diff = 0
+            for k in range(day_end, ln - day):
+                day_diff = max(day_diff, diffs[k])
+                dp2[day_end] = min(dp2[day_end], day_diff + dp[k + 1])
+
+        dp, dp2 = dp2, [float("inf")] * ln
+
+    return dp[0]
+
+
+def minDifficulty_dp_space_saving_optimized_stack(diffs: List[int], days: int) -> int:
+    """
+    Dynamic programming, bottom up, with space saving and with monotonic stack optimization
 
     Time: (n * d)
     Space: (n)

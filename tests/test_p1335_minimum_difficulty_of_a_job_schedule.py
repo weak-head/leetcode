@@ -4,7 +4,8 @@ from leetcode.p1335_minimum_difficulty_of_a_job_schedule import *
 
 solutions = [
     minDifficulty_dp,
-    minDifficulty_dp_stack,
+    minDifficulty_dp_space_saving,
+    minDifficulty_dp_space_saving_optimized_stack,
 ]
 
 #   ([args], expectation),
