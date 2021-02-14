@@ -4,7 +4,8 @@ from collections import deque
 from leetcode.p0101_symmetric_tree import *
 
 solutions = [
-    isSymmetric,
+    isSymmetric_recursive,
+    isSymmetric_iterative,
 ]
 
 #   ([args], expectation),
