@@ -6,7 +6,6 @@ solutions = [
     {method},
 ]
 
-#   ([args], expectation),
 test_cases = [
     ([arg1, arg2], True),
 ]
