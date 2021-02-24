@@ -1,5 +1,4 @@
 from typing import Tuple
-from functools import lru_cache
 
 
 class TreeNode:
@@ -17,20 +16,23 @@ def rob(root: TreeNode) -> int:
         - 213 https://leetcode.com/problems/house-robber-ii/
 
     Time: O(n)
-    Space: O(n)
+    Space: O(k)
         n - number of houses/nodes
+        k - max depth of the tree
     """
 
-    @lru_cache(None)
     def rob_node(node: TreeNode) -> Tuple[int, int]:
         if not node:
-            return (0, 0)
+            return (0, 0)  # (if_skip, if_rob)
+
+        left = rob_node(node.left)
+        right = rob_node(node.right)
 
         # if we rob this house, we have to skip both children
-        if_rob = node.val + rob_node(node.left)[0] + rob_node(node.right)[0]
+        if_rob = node.val + left[0] + right[0]
 
         # if we skip this house, we can rob or skip both children
-        if_skip = max(rob_node(node.left)) + max(rob_node(node.right))
+        if_skip = max(left) + max(right)
 
         return (if_skip, if_rob)
 
