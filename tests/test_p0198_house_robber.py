@@ -4,6 +4,7 @@ from leetcode.p0198_house_robber import *
 
 solutions = [
     rob,
+    rob_optimized,
 ]
 
 test_cases = [

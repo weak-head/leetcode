@@ -29,3 +29,24 @@ def rob(nums: List[int]) -> int:
         s[house] = (if_skip, if_rob)
 
     return max(s[-1])
+
+
+def rob_optimized(nums: List[int]) -> int:
+    """
+    Dynamic Programming
+
+    Same as above, but optimized for space
+
+    Time: O(n)
+    Space: O(1)
+        n - number of houses
+    """
+    n = len(nums)
+    prev_2, prev_1 = 0, 0
+
+    for house in range(n):
+        # best of skip this or rob this
+        this = max(prev_1, prev_2 + nums[house])
+        prev_2, prev_1 = prev_1, this
+
+    return prev_1
