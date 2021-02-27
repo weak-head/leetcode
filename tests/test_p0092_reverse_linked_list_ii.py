@@ -4,6 +4,7 @@ from leetcode.p0092_reverse_linked_list_ii import *
 
 solutions = [
     reverseBetween,
+    reverseBetween_optimized,
 ]
 
 test_cases = [

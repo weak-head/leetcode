@@ -4,6 +4,43 @@ class ListNode:
         self.next = next
 
 
+def reverseBetween_optimized(head: ListNode, left: int, right: int) -> ListNode:
+    """
+    Optimized for space.
+
+    Time: O(n)
+    Space: O(1)
+        n - length of the list
+    """
+    if left == right:
+        return head
+
+    def rev_n(node, n):
+        prev, cur = None, node
+        while n > 0:
+            if n == 1:
+                node.next = cur.next
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+            n -= 1
+        return prev
+
+    def rev_lr(node, l, r):
+        prev, cur = None, node
+        while l != 1:
+            prev = cur
+            cur = cur.next
+            l -= 1
+            r -= 1
+        prev.next = rev_n(cur, r)
+        return node
+
+    node = ListNode(None, head)
+    return rev_lr(node, left + 1, right + 1).next
+
+
 def reverseBetween(head: ListNode, left: int, right: int) -> ListNode:
     """
     Time: O(n)
