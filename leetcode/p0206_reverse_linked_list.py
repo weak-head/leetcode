@@ -22,3 +22,16 @@ def reverseList(head: ListNode) -> ListNode:
         prev = cur
         cur = nxt
     return prev
+
+
+def reverseListRec(head: ListNode) -> ListNode:
+    """
+    Time: O(n)
+    Space: O(n)
+    """
+    if head.next is None:
+        return head
+    last = reverseListRec(head.next)
+    head.next.next = head
+    head.next = None
+    return last
