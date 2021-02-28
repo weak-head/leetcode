@@ -4,32 +4,40 @@ class ListNode:
         self.next = None
 
 
-def reverseKGroup2(head, k):
+def reverseKGroup_optimized(head, k):
     """
     Time: O(n)
     Space: O(1)
     """
-    dummy = jump = ListNode(0)
-    dummy.next = l = r = head
+    dummy = prev_group_end = ListNode(0)
+    dummy.next = this_group_start = next_group_start = head
 
     while True:
 
+        # find the start of the next group
         count = 0
-        while r and count < k:  # use r to locate the range
-            r = r.next
+        while next_group_start and count < k:
+            next_group_start = next_group_start.next
             count += 1
 
-        if count == k:  # if size k satisfied, reverse the inner linked list
-            pre, cur = r, l
+        if count == k:
+            # reverse this k-group
+            pre, cur = next_group_start, this_group_start
             for _ in range(k):
-                cur.next, cur, pre = pre, cur.next, cur  # standard reversing
-            jump.next, jump, l = pre, l, r  # connect two k-groups
+                tmp = cur.next
+                cur.next = pre
+                pre = cur
+                cur = tmp
+
+            # connect prev group to this group
+            prev_group_end.next = pre
+
+            # jump to next iteration
+            prev_group_end = this_group_start
+            this_group_start = next_group_start
 
         else:
             return dummy.next
-
-
-# -----
 
 
 def reverseKGroup(head, k):
