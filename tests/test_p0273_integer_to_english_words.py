@@ -1,12 +1,11 @@
 # flake8: noqa: F403, F405
 import pytest
-from leetcode.p0237_integer_to_english_words import *
+from leetcode.p0273_integer_to_english_words import *
 
 solutions = [
     numberToWords,
 ]
 
-#   ([args], expectation),
 test_cases = [
     (0, "Zero"),
     (217, "Two Hundred Seventeen"),

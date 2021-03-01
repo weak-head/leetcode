@@ -6,6 +6,14 @@ new:
 %:	# if rule is not found, do nothing, silently
 	@:
 
+.PHONY: clear
+clear:
+	@rm -rf .pytest_cache | true
+	@rm -rf htmlcov | true
+	@rm -rf .coverage | true
+	@rm -rf coverage.xml | true
+	@find . | grep -E "(__pycache__|\\.pyc|\\.pyo$$)" | xargs rm -rf | true
+
 .PHONY: verify
 verify:
 	@python3 ./.scripts/genmd.py --verify
