@@ -10,17 +10,13 @@ def findErrorNums_map(nums: List[int]) -> List[int]:
     Space: O(n)
     """
     m = Counter(nums)
-    dup, missing = None, None
+    dup, missing = None, 1
 
     for i in range(1, len(nums) + 1):
         if i not in m:
             missing = i
-        else:
-            if m[i] == 2:
-                dup = i
-
-    if missing is None:
-        missing = len(nums)
+        elif m[i] == 2:
+            dup = i
 
     return dup, missing
 
