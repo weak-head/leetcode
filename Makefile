@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := test
+
 .PHONY: new
 new:
 # https://stackoverflow.com/questions/6273608/how-to-pass-argument-to-makefile-from-command-line/6273809#6273809
