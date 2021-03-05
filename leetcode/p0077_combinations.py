@@ -10,17 +10,16 @@ def combine(n: int, k: int) -> List[List[int]]:
     """
 
     res = []
-    nums = list(range(1, n + 1))
 
     def track(start, combination):
         if len(combination) == k:
             res.append(list(combination))  # O(k)
             return
 
-        for i in range(start, len(nums)):
-            combination.append(nums[i])
+        for i in range(start, n + 1):
+            combination.append(i)
             track(i + 1, combination)
             combination.pop()
 
-    track(0, [])
+    track(1, [])
     return res
