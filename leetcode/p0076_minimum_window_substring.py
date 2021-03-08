@@ -3,91 +3,51 @@ from collections import Counter
 
 def minWindow(s, t):
     """
-    Solution using sliding window.
-    Relatively slow because of 'covers'.
-    """
-    tnum = Counter(t)
-    slen = len(s)
-    lix = rix = 0
-    ml = mr = None
-    while lix < slen:
-        cov = covers(tnum)
-        # we have found the window
-        if cov or rix == slen:
-            if cov:
-                # adjust min range
-                if ml is None or (rix - lix) < (mr - ml):
-                    ml, mr = lix, rix
+    Sliding window
+    With optimization to track the state
 
-            ch = s[lix]
-            if ch in tnum:
-                tnum[ch] += 1
-
-            lix += 1
-        # we can more rix forward
-        else:
-            ch = s[rix]
-            if ch in tnum:
-                tnum[ch] -= 1
-            rix += 1
-
-    return "" if ml is None else s[ml:mr]
-
-
-def covers(tnum: Counter):
-    for v in tnum.values():
-        if v > 0:
-            return False
-    return True
-
-
-# ----------------------------------------
-
-
-def minWindow2(s, t):
-    """
-    Optimized solution using sliding window
-    that tracks number of positive items
-    and runs faster than the previous one.
+    Time: O(s + t)
+    Space: O(t)
+        s - length of 's'
+        t - length of 't'
     """
     if not s or not t:
         return ""
 
-    tnum = Counter(t)
-    pos_num = len(tnum)
-    slen = len(s)
-    lix = rix = 0
-    ml = mr = None
+    state = Counter(t)
+    state_left = len(state)
+    ml = mr = None  # right side open
+    li = ri = 0
 
-    while lix < slen:
-        cov = pos_num == 0
+    while li < len(s):
 
-        # we can terminate the loop, because
-        # we would not find the window
-        if rix == slen and pos_num != 0:
+        covers = state_left == 0
+
+        # we can't find the window
+        if ri == len(s) and state_left != 0:
             break
 
-        # adjust min range
-        if cov:
-            if ml is None or (rix - lix) < (mr - ml):
-                ml, mr = lix, rix
+        # adjust min
+        if covers:
+            if ml is None or (ri - li) < (mr - ml):
+                ml, mr = li, ri
 
-        # we have found the window
-        if cov or rix == slen:
-            ch = s[lix]
-            if ch in tnum:
-                tnum[ch] += 1
-                if tnum[ch] == 1:
-                    pos_num += 1
-
-            lix += 1
-        # we can more rix forward
+        # covers or reached end -> move left
+        if covers or ri == len(s):
+            ch = s[li]
+            if ch in state:
+                state[ch] += 1
+                if state[ch] == 1:
+                    state_left += 1
+            li += 1
+        # not covers, expand -> move right
         else:
-            ch = s[rix]
-            if ch in tnum:
-                tnum[ch] -= 1
-                if tnum[ch] == 0:
-                    pos_num -= 1
-            rix += 1
+            ch = s[ri]
+            if ch in state:
+                state[ch] -= 1
+                if state[ch] == 0:
+                    state_left -= 1
 
-    return "" if ml is None else s[ml:mr]
+            ri += 1
+
+    return s[ml:mr] if ml is not None else ""
