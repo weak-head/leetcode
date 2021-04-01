@@ -4,6 +4,7 @@ from leetcode.p0855_exam_room import *
 
 solutions = [
     ExamRoom,
+    ExamRoomPQ,
 ]
 
 test_cases = [
@@ -15,6 +16,19 @@ test_cases = [
         ("s", 2),
         ("l", 4),
         ("s", 5),
+    ],
+    [
+        ("n", 100),
+        ("s", 0),
+        ("s", 99),
+        ("s", 49),
+        ("s", 74),
+        ("s", 24),
+        ("s", 12),
+        ("l", 49),
+        ("l", 74),
+        ("s", 61),
+        ("s", 80),
     ],
 ]
 
