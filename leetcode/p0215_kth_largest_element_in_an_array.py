@@ -1,5 +1,6 @@
 from typing import List
 import heapq
+from random import randint
 
 
 def findKthLargest(nums: List[int], k: int) -> int:
@@ -26,14 +27,28 @@ def findKthLargest2(nums, k):
     Best-case: O(n)
     Average-case: O(n)
     """
-    pivot = nums[0]
-    left = [l for l in nums if l < pivot]
-    equal = [e for e in nums if e == pivot]
-    right = [r for r in nums if r > pivot]
 
-    if k <= len(right):
-        return findKthLargest2(right, k)
-    elif (k - len(right)) <= len(equal):
-        return equal[0]
-    else:
-        return findKthLargest2(left, k - len(right) - len(equal))
+    def partition(i, j) -> int:
+        index = randint(i, j)
+        nums[index], nums[j] = nums[j], nums[index]
+
+        for k in range(i, j):
+            if nums[k] <= nums[j]:
+                nums[i], nums[k] = nums[k], nums[i]
+                i += 1
+
+        nums[i], nums[j] = nums[j], nums[i]
+        return i
+
+    def sort(i, j) -> int:
+        pivot = partition(i, j)
+        if pivot == pos:
+            return nums[pos]
+        elif pos < pivot:
+            return sort(i, pivot - 1)
+        else:
+            return sort(pivot + 1, j)
+
+    n = len(nums)
+    pos = n - k
+    return sort(0, n - 1)
