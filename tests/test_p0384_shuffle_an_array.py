@@ -7,7 +7,7 @@ solutions = [
 ]
 
 
-@pytest.mark.timeout(2)
+@pytest.mark.timeout(4)
 @pytest.mark.parametrize("solution", solutions)
 def test_solution(solution):
 
