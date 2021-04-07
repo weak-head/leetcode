@@ -41,8 +41,12 @@
 [gitpod-img]: https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod
 [gitpod-url]: https://gitpod.io/#https://github.com/weak-head/leetcode
 
+## Open in Gitpod
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/weak-head/leetcode/)
+[![Open in Gitpod](https://img.shields.io/badge/Gitpod-Open%20in%20Gitpod-%230092CF.svg)](https://gitpod.io#https://github.com/weak-head/leetcode/)
+
+And you are ready to play with the repo.
+Or alternatively setup your own local environment...
 
 ## Environment setup
 
