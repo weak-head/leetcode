@@ -9,13 +9,19 @@ from pytablewriter import MarkdownTableWriter
 from termcolor import colored
 
 
-TABLE_TITLE = "List of Problems"
+class conf:
+    # -- Table info --
+    table_title = "List of Problems"
+    table_total = " (Total: {count})"
 
-LEETCODE_URL = "https://leetcode.com/problems/{}/"
-GITHUB_URL = "https://github.com/weak-head/leetcode/blob/master/{}"
-GITHUB_SRC = "leetcode/{}"
-GITHUB_TST = "tests/test_{}"
-MD_LINK = "[{title}]({link})"
+    # -- URLs --
+    leetcode_url = "https://leetcode.com/problems/{}/"
+    github_url = "https://github.com/weak-head/leetcode/blob/master/{}"
+    github_src = "leetcode/{file}"
+    github_tst = "tests/test_{file}"
+
+    # -- Markdown --
+    markdown_link = "[{title}]({link})"
 
 
 def verify_url(url, verify=True):
@@ -65,39 +71,46 @@ def parse_filename(file_name):
 def gen_table(verify=False, silent=False):
     header = ["#", "Title", "Solution", "Test cases"]
     table = []
+    count = 0
 
     for file in sorted(os.listdir("./leetcode")):
         # if problem
         if file[0] == "p":
+            count += 1
+
             id, name = parse_filename(file)
             problem_title = name.replace("_", " ").title()
             next_problem(id, problem_title, silent)
 
             # compose leetcode link
-            leetcode_url = LEETCODE_URL.format(name.replace("_", "-"))
-            leetcode_link = MD_LINK.format(title=problem_title, link=leetcode_url)
+            leetcode_url = conf.leetcode_url.format(name.replace("_", "-"))
+            leetcode_link = conf.markdown_link.format(
+                title=problem_title, link=leetcode_url
+            )
             success = verify_url(leetcode_url, verify)
 
             # compose github src link
-            src_url = GITHUB_SRC.format(file)
-            src_link = MD_LINK.format(title="src", link=src_url)
-            success = verify_url(GITHUB_URL.format(src_url), verify) and success
+            src_url = conf.github_src.format(file=file)
+            src_link = conf.markdown_link.format(title="src", link=src_url)
+            success = verify_url(conf.github_url.format(src_url), verify) and success
             success = verify_file(src_url, verify) and success
 
             # compose github tst link
-            tst_url = GITHUB_TST.format(file)
-            tst_link = MD_LINK.format(title="tst", link=tst_url)
-            success = verify_url(GITHUB_URL.format(tst_url), verify) and success
+            tst_url = conf.github_tst.format(file=file)
+            tst_link = conf.markdown_link.format(title="tst", link=tst_url)
+            success = verify_url(conf.github_url.format(tst_url), verify) and success
             success = verify_file(tst_url, verify) and success
 
             verification_status(id, name, success, silent)
             table.append([id, leetcode_link, src_link, tst_link])
 
-    return header, table
+    return header, table, count
 
 
-def to_markdown(title, header, table):
+def to_markdown(header, table, problem_count):
     writer = MarkdownTableWriter()
+
+    title = conf.table_title + conf.table_total.format(count=problem_count)
 
     writer.table_name = title
     writer.headers = header
@@ -116,12 +129,12 @@ def refresh_markdown(file_name, verify=False, silent=False):
         content = readme.read()
 
     # Drop the old table
-    title_loc_ix = content.find(TABLE_TITLE)
+    title_loc_ix = content.find(conf.table_title)
     content = content[: title_loc_ix - 2]  # drop '# '
 
     # Generate a new one
-    header, table = gen_table(verify, silent)
-    markdown = to_markdown(TABLE_TITLE, header, table)
+    header, table, count = gen_table(verify, silent)
+    markdown = to_markdown(header, table, count)
 
     content = content + markdown
     with open(file_name, "w") as readme:
