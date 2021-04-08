@@ -1,5 +1,5 @@
 import pytest
-from leetcode.p0772_basic_calculator_iii import calculate1, calculate2
+from leetcode.p0772_basic_calculator_iii import calculate
 
 
 @pytest.mark.parametrize(
@@ -13,8 +13,8 @@ from leetcode.p0772_basic_calculator_iii import calculate1, calculate2
         ("(-7 + 3) / (-2 + 4)", -2),
         ("(2+6*3+5-(3*14/7+2)*5)+3", -12),
         ("((2+((6*3))+5)-(3*14/7+2)*5)+3", -12),
+        ("(1+1+1+1*1+1+1*1*1*1*2*1*2*1*(1)*(2*1)*3+4+(4)", 37),
     ),
 )
 def test_calculate(a, expectation):
-    assert calculate1(a) == expectation
-    assert calculate2(a) == expectation
+    assert calculate(a) == expectation
