@@ -8,7 +8,8 @@ before_install:
   - sudo apt install make python3-pip python-virtualenv
 
 install:
-  - pip3 install codecov pytest-timeout
+  - pip install pipenv
+  - pipenv install --dev
 
 script:
   - make coverage
