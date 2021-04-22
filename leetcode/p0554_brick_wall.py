@@ -12,8 +12,9 @@ def leastBricks(wall: List[List[int]]) -> int:
     number of bricks.
 
     Time: O(n)
-    Space: O(n)
+    Space: O(m)
         n - number of bricks in the wall
+        m - width of the wall
     """
     c = defaultdict(int)  # location -> spaces
     for row in wall:
