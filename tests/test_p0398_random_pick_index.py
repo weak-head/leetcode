@@ -22,4 +22,4 @@ def test_solution(solution):
 
     for i, v in enumerate(h):
         if a[i]:
-            assert 1_900 <= v <= 2_100
+            assert 1_800 <= v <= 2_200
