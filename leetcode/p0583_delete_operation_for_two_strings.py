@@ -5,6 +5,9 @@ def minDistance(a: str, b: str) -> int:
 
     Optimized for space
 
+    Same as:
+        # 1143 - Longest Common Subsequence
+
     Time: O(m * n)
     Space: O(min(m, n))
         n - length of a
