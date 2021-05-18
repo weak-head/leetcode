@@ -5,30 +5,17 @@ from collections import defaultdict
 def findDuplicate(paths: List[str]) -> List[List[str]]:
     """
     * 1. Imagine you are given a real file system, how will you search files? DFS or BFS?
-    DFS. In this case the directory path could be large.
-    DFS can reuse the shared the parent directory before leaving that directory.
-    But BFS cannot.
+    BFS explores neighbors first.
+    This means that files which are located close to each other are also accessed one after another.
+    This is great for space locality and that's why BFS is expected to be faster. Also, BFS is easier to parallelize (more fine-grained locking).
+    DFS will require a lock on the root node.
 
     * 2. If the file content is very large (GB level), how will you modify your solution?
-    In this case, not realistic to match the whole string of the content.
-    So we use file signitures to judge if two files are identical.
-    Signitures can include file size, as well as sampled contents on the same positions.
-    They could have different file names and time stamps though.
-    Hashmaps are necessary to store the previous scanned file info.
-    S = O(|keys| + |list(directory)|).
-    The key and the directory strings are the main space consumption.
+    For very large files we should do the following comparisons in this order:
 
-    a. Sample to obtain the sliced indices in the strings stored in the RAM only
-        once and used for all the scanned files.
-        Accessing the strings is on-the-fly.
-        But transforming them to hashcode used to look up in hashmap
-        and storing the keys and the directories in the hashmap can be time consuming.
-        The directory string can be compressed to directory id.
-        The keys are hard to compress.
-    b. Use fast hashing algorithm e.g. MD5 or use SHA256 (no collisions found yet).
-        If no worry about the collision, meaning the hashcode is 1-1.
-        Thus in the hashmap, the storage consumption on key string can be
-        replaced by key_hashcode, space usage compressed.
+     - compare sizes, if not equal, then files are different and stop here!
+     - hash them with a fast algorithm e.g. MD5 or use SHA256 (no collisions found yet), if not equal then stop here!
+     - compare byte by byte to avoid false positives due to collisions.
 
     * 3. If you can only read the file by 1kb each time, how will you modify your solution?
     That is the file cannot fit the whole ram.
