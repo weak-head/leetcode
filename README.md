@@ -90,7 +90,7 @@ make add
 make commit
 ```
 
-## List of Problems (Total: 343)
+## List of Problems (Total: 344)
 |  #   |                                                                           Title                                                                           |                                       Solution                                       |                                       Test cases                                       |
 |-----:|-----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
 |    1 | [Two Sum](https://leetcode.com/problems/two-sum/)                                                                                                         | [src](leetcode/p0001_two_sum.py)                                                     | [tst](tests/test_p0001_two_sum.py)                                                     |
@@ -435,4 +435,5 @@ make commit
 | 1679 | [Max Number Of K Sum Pairs](https://leetcode.com/problems/max-number-of-k-sum-pairs/)                                                                     | [src](leetcode/p1679_max_number_of_k_sum_pairs.py)                                   | [tst](tests/test_p1679_max_number_of_k_sum_pairs.py)                                   |
 | 1680 | [Concatenation Of Consecutive Binary Numbers](https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers/)                                 | [src](leetcode/p1680_concatenation_of_consecutive_binary_numbers.py)                 | [tst](tests/test_p1680_concatenation_of_consecutive_binary_numbers.py)                 |
 | 1704 | [Determine If String Halves Are Alike](https://leetcode.com/problems/determine-if-string-halves-are-alike/)                                               | [src](leetcode/p1704_determine_if_string_halves_are_alike.py)                        | [tst](tests/test_p1704_determine_if_string_halves_are_alike.py)                        |
+| 1710 | [Maximum Units On A Truck](https://leetcode.com/problems/maximum-units-on-a-truck/)                                                                       | [src](leetcode/p1710_maximum_units_on_a_truck.py)                                    | [tst](tests/test_p1710_maximum_units_on_a_truck.py)                                    |
 | 1721 | [Swapping Nodes In A Linked List](https://leetcode.com/problems/swapping-nodes-in-a-linked-list/)                                                         | [src](leetcode/p1721_swapping_nodes_in_a_linked_list.py)                             | [tst](tests/test_p1721_swapping_nodes_in_a_linked_list.py)                             |
