@@ -4,7 +4,10 @@ from typing import List
 
 def shortestDistanceColor(colors: List[int], queries: List[List[int]]) -> List[int]:
     """
-    pass
+    Time: O( max(n, q * log n) )
+    Space: O(n)
+        n - number of colors
+        q - number of queries
     """
     one = []
     two = []
