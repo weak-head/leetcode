@@ -11,8 +11,8 @@
 [![black][black-img]][black-url]
 [![][tokei-ln-img]][tokei-ln-url]
 
-[travis-img]: https://travis-ci.org/weak-head/leetcode.svg?branch=main
-[travis-url]: https://travis-ci.org/weak-head/leetcode
+[travis-img]: https://app.travis-ci.com/weak-head/leetcode.svg?branch=main
+[travis-url]: https://app.travis-ci.com/github/weak-head/leetcode
 
 [codecov-img]: https://codecov.io/gh/weak-head/leetcode/branch/main/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/weak-head/leetcode
