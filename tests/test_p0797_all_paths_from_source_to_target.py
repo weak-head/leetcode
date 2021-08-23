@@ -4,6 +4,7 @@ from leetcode.p0797_all_paths_from_source_to_target import *
 
 solutions = [
     allPathsSourceTarget,
+    allPathsSourceTarget_bfs,
 ]
 
 test_cases = [

@@ -37,3 +37,24 @@ def allPathsSourceTarget(g):
     dfs(0, [0])
 
     return res
+
+
+def allPathsSourceTarget_bfs(graph):
+    if not graph:
+        return
+
+    size = len(graph)
+    paths = []
+
+    stack = [(0, [0])]
+
+    while stack:
+        start, path = stack.pop()
+
+        if start == size - 1:
+            paths.append(path)
+
+        for nei in graph[start]:
+            stack.append((nei, path + [nei]))
+
+    return map(tuple, paths)
