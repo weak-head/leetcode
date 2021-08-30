@@ -75,3 +75,71 @@ class LRUCache:
         node.prev = self._head
         self._head.next.prev = node
         self._head.next = node
+
+
+# ---- ---- ---- ----
+
+
+class Node:
+    def __init__(self, key, val, next=None, prev=None):
+        self.prev = prev
+        self.next = next
+        self.val = val
+        self.key = key
+
+
+class DList:
+    def __init__(self):
+        self.head = Node(None, None)
+        self.head.next = self.head
+        self.head.prev = self.head
+        self._size = 0
+
+    def addToFront(self, node):
+        node.next = self.head.next
+        node.prev = self.head
+        self.head.next.prev = node
+        self.head.next = node
+        self._size += 1
+
+    def remove(self, node):
+        node.prev.next = node.next
+        node.next.prev = node.prev
+        self._size -= 1
+
+    def removeLast(self):
+        node = self.head.prev
+        self.remove(node)
+        return node
+
+    def size(self):
+        return self._size
+
+
+class LRUCache2:
+    def __init__(self, capacity: int):
+        self._l = DList()
+        self._h = {}
+        self._capacity = capacity
+
+    def get(self, key: int) -> int:
+        if key not in self._h:
+            return -1
+        node = self._h[key]
+        self._l.remove(node)
+        self._l.addToFront(node)
+        return node.val
+
+    def put(self, key: int, value: int) -> None:
+        if key in self._h:
+            node = self._h[key]
+            node.val = value
+            self._l.remove(node)
+            self._l.addToFront(node)
+        else:
+            if self._l.size() == self._capacity:
+                node = self._l.removeLast()
+                del self._h[node.key]
+            node = Node(key, value)
+            self._l.addToFront(node)
+            self._h[key] = node

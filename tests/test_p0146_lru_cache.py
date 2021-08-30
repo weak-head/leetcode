@@ -1,53 +1,79 @@
-from leetcode.p0146_lru_cache import LRUCache
+# flake8: noqa: F403, F405
+import pytest
+from leetcode.p0146_lru_cache import *
+
+solutions = [
+    LRUCache,
+    LRUCache2,
+]
+
+test_cases = [
+    [
+        ("n", 4, None),
+        ("g", 4, -1),
+        ("p", 1, 1),
+        ("p", 2, 2),
+        ("p", 3, 3),
+        ("p", 4, 4),
+        ("p", 5, 5),
+        ("g", 3, 3),
+        ("g", 1, -1),
+        ("p", 6, 6),
+        ("g", 2, -1),
+        ("g", 6, 6),
+        ("p", 5, 5),
+        ("p", 7, 7),
+        ("g", 4, -1),
+        ("g", 7, 7),
+        ("g", 5, 5),
+        ("g", 6, 6),
+        ("g", 3, 3),
+        ("p", 8, 8),
+        ("g", 7, -1),
+        ("g", 5, 5),
+        ("p", 9, 9),
+        ("g", 6, -1),
+        ("g", 9, 9),
+        ("g", 3, 3),
+        ("g", 8, 8),
+        ("g", 5, 5),
+        ("g", 9, 9),
+    ],
+    [
+        ("n", 1, None),
+        ("g", 1, -1),
+        ("p", 1, 1),
+        ("g", 1, 1),
+        ("p", 2, 2),
+        ("g", 1, -1),
+        ("g", 2, 2),
+        ("g", 3, -1),
+    ],
+    [
+        ("n", 2, None),
+        ("p", 1, 1),
+        ("p", 2, 2),
+        ("p", 3, 3),
+        ("g", 1, -1),
+        ("p", 4, 4),
+        ("g", 2, -1),
+        ("g", 3, 3),
+        ("p", 5, 5),
+        ("g", 4, -1),
+        ("g", 3, 3),
+    ],
+]
 
 
-def test_lru():
-    cache = LRUCache(4)
+@pytest.mark.timeout(1)
+@pytest.mark.parametrize("args", test_cases)
+@pytest.mark.parametrize("solution", solutions)
+def test_solution(args, solution):
+    _, n, _ = args[0]
+    lru = solution(n)
 
-    assert cache.get(4) == -1
-
-    cache.put(1, 1)
-    cache.put(2, 2)
-    cache.put(3, 3)
-    cache.put(4, 4)
-    # 4 3 2 1
-
-    cache.put(5, 5)  # overwrites 1
-    assert cache.get(3) == 3  # moves 3 to top
-    assert cache.get(1) == -1  # has been overwritten by 5
-    # 3 5 4 2
-
-    cache.put(6, 6)  # overwrites 2
-    assert cache.get(2) == -1  # has been overwritten by 6
-    # 6 3 5 4
-
-    assert cache.get(6) == 6
-    # 6 3 5 4
-
-    cache.put(5, 5)  # moves 5 to top
-    # 5 6 3 4
-    cache.put(7, 7)  # overwrites 4
-    # 7 5 6 3
-    assert cache.get(4) == -1
-
-    assert cache.get(7) == 7
-    assert cache.get(5) == 5
-    assert cache.get(6) == 6
-    assert cache.get(3) == 3
-    # 3 6 5 7
-
-    cache.put(8, 8)  # overwrites 7
-    # 8 3 6 5
-    assert cache.get(7) == -1
-    assert cache.get(5) == 5  # moves 5 to top
-    # 5 8 3 6
-
-    cache.put(9, 9)  # overwrites 6
-    assert cache.get(6) == -1
-    assert cache.get(9) == 9
-    # 9 5 8 3
-
-    assert cache.get(3) == 3
-    assert cache.get(8) == 8
-    assert cache.get(5) == 5
-    assert cache.get(9) == 9
+    for action, a1, a2 in args[1:]:
+        if action == "g":
+            assert lru.get(a1) == a2
+        elif action == "p":
+            lru.put(a1, a2)
