@@ -2,7 +2,6 @@ import pytest
 from leetcode.p1008_construct_binary_search_tree_from_preorder_traversal import (
     TreeNode,
     bstFromPreorder,
-    bstFromPreorder2,
 )
 
 
@@ -29,4 +28,3 @@ def inorder(node: TreeNode):
 )
 def test_bst(preorder, tree):
     assert list(inorder(bstFromPreorder(preorder))) == tree
-    assert list(inorder(bstFromPreorder2(preorder))) == tree
