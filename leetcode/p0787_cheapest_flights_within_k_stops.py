@@ -46,12 +46,12 @@ def findCheapestPrice1(
             # Better cost?
             if n_cost < distances[dest]:
                 distances[dest] = n_cost
-                heapq.heappush(queue, (n_cost, dest, stop + 1))
+                heapq.heappush(queue, (n_cost, stop + 1, dest))
                 stops[dest] = stop + 1
 
             # Better steps?
             elif stop < stops[dest]:
-                heapq.heappush(queue, (n_cost, dest, stop + 1))
+                heapq.heappush(queue, (n_cost, stop + 1, dest))
 
     return distances[dst] if distances[dst] != float("inf") else -1
 
