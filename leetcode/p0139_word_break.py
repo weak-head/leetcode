@@ -5,8 +5,10 @@ def wordBreak(s: str, words: List[str]) -> bool:
     """
     Dynamic programming
 
-    Time:
-    Space:
+    Time: O(n^2)
+    Space: O(max(w, n))
+        w - number of words
+        n - length of the string
     """
 
     words_set = set(words)
