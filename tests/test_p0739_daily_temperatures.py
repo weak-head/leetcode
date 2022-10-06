@@ -4,6 +4,7 @@ from leetcode.p0739_daily_temperatures import *
 
 solutions = [
     dailyTemperatures,
+    dailyTemperatures2,
 ]
 
 test_cases = [

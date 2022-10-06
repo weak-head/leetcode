@@ -22,3 +22,28 @@ def dailyTemperatures(t: List[int]) -> List[int]:
         s.append(i)
 
     return r
+
+
+def dailyTemperatures2(t: List[int]) -> List[int]:
+    """
+    Time: O(n)
+    Space: O(1)
+        n - length of the array
+    """
+    n = len(t)
+    hottest = 0
+    answer = [0] * n
+
+    for curr_day in range(n - 1, -1, -1):
+        current_temp = t[curr_day]
+        if current_temp >= hottest:
+            hottest = current_temp
+            continue
+
+        days = 1
+        while t[curr_day + days] <= current_temp:
+            days += answer[curr_day + days]
+
+        answer[curr_day] = days
+
+    return answer
