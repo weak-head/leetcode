@@ -30,7 +30,7 @@ class conf:
 
     # -- Editor --
     editor = "code"
-    open_editor = True
+    open_editor = False
 
 
 def extract_title(url):
